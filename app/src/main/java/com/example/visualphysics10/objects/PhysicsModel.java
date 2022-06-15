@@ -11,7 +11,7 @@ import android.media.MediaPlayer;
 import com.example.visualphysics10.database.PhysicsData;
 import com.example.visualphysics10.engine.PhysicsSprite;
 import com.example.visualphysics10.engine.Vector2;
-import com.example.visualphysics10.ui.fragments_dl.SettingsFragment2;
+import com.example.visualphysics10.itemUi.SettingsFragment2;
 
 //TODO: класс сущности физ. моделек наследуется от PhysicsSprite где у нас описаны основные параметры моделек наследуемые от класса Sprites
 // в этом классе у нас так же описивается изменение координаты моделек (движение) и их взаимодействие
