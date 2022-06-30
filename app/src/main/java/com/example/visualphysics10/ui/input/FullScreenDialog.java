@@ -1,4 +1,4 @@
-package com.example.visualphysics10.ui.inform.input;
+package com.example.visualphysics10.ui.input;
 
 import android.app.Dialog;
 import android.content.SharedPreferences;
@@ -36,7 +36,12 @@ public class FullScreenDialog extends DialogFragment {
     public static LessonData lessonData = new LessonData();
     public static SharedPreferences sp;
     private LessonViewModel viewModel;
+    private final int position;
     private LessonData lessonDataList = new LessonData();
+
+    public FullScreenDialog(int position) {
+        this.position = position;
+    }
 
     public static LessonData getInstance() {
         return lessonData;
@@ -46,10 +51,6 @@ public class FullScreenDialog extends DialogFragment {
     }
     public static SharedPreferences getSp() {
         return sp;
-    }
-
-    public static FullScreenDialog newInstance() {
-        return new FullScreenDialog();
     }
 
     //TODO: entering values for 1-4 lessons (fragments)

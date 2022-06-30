@@ -29,7 +29,7 @@
             android:background="@drawable/background"
             app:layoutManager="LinearLayoutManager"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            tools:context=".ui.lesson.ItemFragment"
+            tools:context=".ui.lesson.ItemFragmentList"
             tools:listitem="@layout/fragment_item" />
 
         <FrameLayout

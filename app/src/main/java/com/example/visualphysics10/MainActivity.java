@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.visualphysics10.ui.lesson.ItemFragment;
+import com.example.visualphysics10.ui.lesson.ItemFragmentList;
 import com.example.visualphysics10.databinding.ActivityMainBinding;
 import com.example.visualphysics10.ui.MainFlag;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -18,7 +18,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 public class MainActivity extends AppCompatActivity {
     FragmentManager fragmentManager = getSupportFragmentManager();
     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-    ItemFragment itemFragment = new ItemFragment();
+    ItemFragmentList itemFragmentList = new ItemFragmentList();
     private ActivityMainBinding binding;
     private int count;
 
@@ -27,8 +27,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(LayoutInflater.from(this));
         setContentView(binding.getRoot());
-        if (itemFragment != null) {
-            fragmentTransaction.add(R.id.container, itemFragment).commit();
+        if (itemFragmentList != null) {
+            fragmentTransaction.add(R.id.container, itemFragmentList).commit();
         }
     }
 

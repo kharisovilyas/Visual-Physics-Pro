@@ -1,4 +1,4 @@
-package com.example.visualphysics10.ui.item;
+package com.example.visualphysics10.ui;
 
 import android.app.Dialog;
 import android.os.Bundle;
@@ -12,19 +12,19 @@ import androidx.fragment.app.DialogFragment;
 
 import com.example.visualphysics10.MainActivity;
 import com.example.visualphysics10.R;
-import com.example.visualphysics10.databinding.FragmentLectureBinding;
+
+import com.example.visualphysics10.databinding.AuthorsListBinding;
 import com.google.android.material.appbar.MaterialToolbar;
 
 import java.util.Objects;
 
-public class FragmentLecture extends DialogFragment {
-    private FragmentLectureBinding binding;
-    public static FragmentLecture newInstance() {
-        return new FragmentLecture();
+public class AuthorsInfo extends DialogFragment {
+    private AuthorsListBinding binding;
+    public static DialogFragment newInstance() {
+        return new AuthorsInfo();
     }
     @Override
-    public void onStart()
-    {
+    public void onStart() {
         super.onStart();
         Dialog dialog = getDialog();
         assert dialog != null;
@@ -42,7 +42,7 @@ public class FragmentLecture extends DialogFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = FragmentLectureBinding.inflate(inflater, container, false);
+        binding = AuthorsListBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
@@ -56,14 +56,9 @@ public class FragmentLecture extends DialogFragment {
         MaterialToolbar toolbar = binding.toolbar;
         ((MainActivity) Objects.requireNonNull(getActivity())).setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.close);
-        toolbar.setTitle(R.string.title_info_1);
+        toolbar.setTitle("Список заимствований");
         toolbar.setNavigationOnClickListener(v -> {
             dismiss();
         });
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
     }
 }

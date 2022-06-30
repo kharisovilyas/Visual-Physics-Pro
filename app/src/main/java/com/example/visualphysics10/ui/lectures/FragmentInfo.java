@@ -1,4 +1,4 @@
-package com.example.visualphysics10.ui.inform.youtube;
+package com.example.visualphysics10.ui.lectures;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,7 +12,6 @@ import androidx.fragment.app.Fragment;
 import com.example.visualphysics10.MainActivity;
 import com.example.visualphysics10.R;
 import com.example.visualphysics10.databinding.FragmentInfoBinding;
-import com.example.visualphysics10.ui.MainFlag;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.textview.MaterialTextView;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
@@ -24,7 +23,12 @@ import java.util.Objects;
 public class FragmentInfo extends Fragment {
     private FragmentInfoBinding binding;
     private MaterialTextView textView;
+    private final int position;
     YouTubePlayerView player;
+
+    public FragmentInfo(int position) {
+        this.position = position;
+    }
 
 
     @Nullable
@@ -46,21 +50,15 @@ public class FragmentInfo extends Fragment {
 
     private void createDescription() {
         textView = binding.info;
-
         //thread loading text, avoid crashing the main thread
-        Runnable runnable = new Runnable() {
-            @Override
-            public void run() {
-                textView.setText(selectDescription());
-            }
-        };
+        Runnable runnable = () -> textView.setText(selectDescription());
         Thread thread = new Thread(runnable);
         thread.start();
     }
 
     //select desired text (lecture of lesson)
     private int selectDescription() {
-        switch (MainFlag.getPosition()) {
+        switch (position) {
             case 0:
                 return R.string.lesson1_inform;
             case 1:
@@ -94,7 +92,7 @@ public class FragmentInfo extends Fragment {
     }
 
     private String selectVideoId() {
-        switch (MainFlag.getPosition()) {
+        switch (position) {
             case 0:
                 return getString(R.string.video1);
             case 1:
@@ -122,7 +120,7 @@ public class FragmentInfo extends Fragment {
     }
 
     private int selectTitle() {
-        switch (MainFlag.getPosition()) {
+        switch (position) {
             case 0:
                 return R.string.title_info_1;
             case 1:

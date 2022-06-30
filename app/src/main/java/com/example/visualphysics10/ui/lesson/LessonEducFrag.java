@@ -27,14 +27,14 @@ import com.example.visualphysics10.MainActivity;
 import com.example.visualphysics10.R;
 import com.example.visualphysics10.database.LessonViewModel;
 import com.example.visualphysics10.database.PhysicsData;
-import com.example.visualphysics10.databinding.L1FragmentBinding;
+import com.example.visualphysics10.databinding.LessonFragmentBinding;
 import com.example.visualphysics10.objects.PhysicsModel;
 import com.example.visualphysics10.physics.PhysicView;
 import com.example.visualphysics10.ui.EndEducationDialog;
 import com.example.visualphysics10.ui.MainFlag;
-import com.example.visualphysics10.ui.inform.input.FullScreenDialog;
-import com.example.visualphysics10.ui.inform.test.FragmentTest;
-import com.example.visualphysics10.ui.inform.youtube.FragmentInfo;
+import com.example.visualphysics10.ui.input.FullScreenDialog;
+import com.example.visualphysics10.ui.test.FragmentTest;
+import com.example.visualphysics10.ui.lectures.FragmentInfo;
 import com.getkeepsafe.taptargetview.TapTarget;
 import com.getkeepsafe.taptargetview.TapTargetSequence;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -44,7 +44,7 @@ import com.google.android.material.textview.MaterialTextView;
 import java.util.Objects;
 
 public class LessonEducFrag extends Fragment {
-    private L1FragmentBinding binding;
+    private LessonFragmentBinding binding;
     private PhysicView gameView;
     public static boolean isMoving = false;
     private FloatingActionButton info;
@@ -61,7 +61,7 @@ public class LessonEducFrag extends Fragment {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        binding = L1FragmentBinding.inflate(inflater, container, false);
+        binding = LessonFragmentBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
@@ -306,7 +306,7 @@ public class LessonEducFrag extends Fragment {
         requireActivity().getSupportFragmentManager()
                 .beginTransaction()
                 .setCustomAnimations(R.anim.nav_default_enter_anim, R.anim.nav_default_exit_anim)
-                .replace(R.id.container, new FragmentTest())
+                .replace(R.id.container, new FragmentTest(0))
                 .addToBackStack(null)
                 .commit();
     }
@@ -315,13 +315,13 @@ public class LessonEducFrag extends Fragment {
         requireActivity().getSupportFragmentManager()
                 .beginTransaction()
                 .setCustomAnimations(R.anim.nav_default_enter_anim, R.anim.nav_default_exit_anim)
-                .replace(R.id.container, new FragmentInfo())
+                .replace(R.id.container, new FragmentInfo(0))
                 .addToBackStack(null)
                 .commit();
     }
 
     private void createdFullScreenDialog() {
-        DialogFragment dialogFragment = FullScreenDialog.newInstance();
+        DialogFragment dialogFragment = new FullScreenDialog(0);
         dialogFragment.show(Objects.requireNonNull(getActivity()).getSupportFragmentManager(), "input");
     }
 

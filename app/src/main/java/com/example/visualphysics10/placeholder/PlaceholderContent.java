@@ -29,21 +29,8 @@ public class PlaceholderContent {
     }
 
     private static PlaceHolderItem createPlaceholderItem(int position) {
-        return new PlaceHolderItem(String.valueOf(position), switchLesson(position), selectDescription(position), switchDetails(position), switchImageView(position));
+        return new PlaceHolderItem(String.valueOf(position), switchLesson(position), switchImageView(position));
     }
-
-    private static String selectDescription(int position) {
-        switch (position){
-            case 1: return "В этом уроке вы разберете ускорение тела";
-            case 2: return "В этом уроке вы изучите движение по окружности";
-            case 3: return "В этом уроке вы пройдете тему II Закон Ньютона";
-            case 4: return "В этом уроке вы изучите движение тел под углом";
-            case 5: return "В этом уроке вы пройдете тему Импульс тел";
-            default:
-                return "";
-        }
-    }
-
 
     private static String switchLesson(int position) {
         switch (position){
@@ -80,16 +67,12 @@ public class PlaceholderContent {
     public static class PlaceHolderItem {
         public final String id;
         public final String title;
-        public final String task;
-        public final String progress;
         public final int imageView;
 
 
-        public PlaceHolderItem(String id, String content, String task, String progress, int imageView) {
+        public PlaceHolderItem(String id, String content, int imageView) {
             this.id = id;
             this.title = content;
-            this.task = task;
-            this.progress = progress;
             this.imageView = imageView;
         }
 

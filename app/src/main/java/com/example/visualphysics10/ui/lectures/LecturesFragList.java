@@ -1,4 +1,4 @@
-package com.example.visualphysics10.ui.item;
+package com.example.visualphysics10.ui.lectures;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -19,23 +19,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.visualphysics10.MainActivity;
 import com.example.visualphysics10.R;
 import com.example.visualphysics10.adapter.RecyclerViewAdapter;
-import com.example.visualphysics10.databinding.FragmentTaskListBinding;
-import com.example.visualphysics10.ui.inform.test.FragmentTest;
-import com.example.visualphysics10.ui.inform.test.FragmentTest2;
-import com.example.visualphysics10.ui.inform.test.FragmentTest3;
-import com.example.visualphysics10.ui.inform.test.FragmentTest4;
-import com.example.visualphysics10.ui.inform.test.FragmentTest5;
+import com.example.visualphysics10.databinding.FragmentLecturesBinding;
 import com.example.visualphysics10.placeholder2.PlaceHolderContent2;
+import com.example.visualphysics10.placeholder3.PlaceHolderContent3;
+import com.example.visualphysics10.ui.test.FragmentTest;
 
 import java.util.Objects;
 
-public class TaskListFragment extends Fragment implements RecyclerViewAdapter.OnLessonListener {
-    private FragmentTaskListBinding binding;
+public class LecturesFragList extends Fragment implements RecyclerViewAdapter.OnLessonListener {
+    private FragmentLecturesBinding binding;
     private final int mColumnCount = 1;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = FragmentTaskListBinding.inflate(inflater, container, false);
+        binding = FragmentLecturesBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
     @Override
@@ -50,7 +47,7 @@ public class TaskListFragment extends Fragment implements RecyclerViewAdapter.On
         Toolbar toolbar = binding.toolbar;
         ((MainActivity) Objects.requireNonNull(getActivity())).setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.arrow_back);
-        toolbar.setTitle(R.string.test);
+        toolbar.setTitle(R.string.lecture);
         toolbar.setNavigationOnClickListener(v -> {
             getActivity().onBackPressed();
         });
@@ -64,7 +61,7 @@ public class TaskListFragment extends Fragment implements RecyclerViewAdapter.On
         } else {
             recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
         }
-        recyclerView.setAdapter(new RecyclerViewAdapter(PlaceHolderContent2.ITEMS, this, "FOR TASK FRAGMENT"));
+        recyclerView.setAdapter(new RecyclerViewAdapter(PlaceHolderContent3.ITEMS, this, "FOR LECTURE FRAGMENT", 0));
     }
 
     @Override
@@ -78,28 +75,9 @@ public class TaskListFragment extends Fragment implements RecyclerViewAdapter.On
         requireActivity().getSupportFragmentManager()
                 .beginTransaction()
                 .setCustomAnimations(R.anim.enter_left_to_right, R.anim.exit_left_to_right)
-                .replace(R.id.container, Objects.requireNonNull(selectFragment(position)))
+                .replace(R.id.container, new FragmentTest(position))
                 .addToBackStack(null)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .commit();
     }
-
-
-    private Fragment selectFragment(int position) {
-        switch (position) {
-            case 0:
-                return new FragmentTest();
-            case 1:
-                return new FragmentTest2();
-            case 2:
-                return new FragmentTest3();
-            case 3:
-                return new FragmentTest4();
-            case 4:
-                return new FragmentTest5();
-            default:
-                return new Fragment();
-        }
-    }
-
 }

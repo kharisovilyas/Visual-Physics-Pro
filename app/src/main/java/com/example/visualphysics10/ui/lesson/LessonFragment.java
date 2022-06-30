@@ -22,25 +22,29 @@ import androidx.fragment.app.Fragment;
 import com.example.visualphysics10.MainActivity;
 import com.example.visualphysics10.R;
 import com.example.visualphysics10.database.PhysicsData;
-import com.example.visualphysics10.databinding.L1FragmentBinding;
-import com.example.visualphysics10.ui.inform.input.FullScreenDialog;
-import com.example.visualphysics10.ui.inform.youtube.FragmentInfo;
-import com.example.visualphysics10.ui.inform.test.FragmentTest;
+import com.example.visualphysics10.databinding.LessonFragmentBinding;
 import com.example.visualphysics10.objects.PhysicsModel;
 import com.example.visualphysics10.physics.PhysicView;
-import com.example.visualphysics10.ui.MainFlag;
+import com.example.visualphysics10.ui.input.FullScreenDialog;
+import com.example.visualphysics10.ui.input.FullScreenDialog5;
+import com.example.visualphysics10.ui.lectures.FragmentInfo;
+import com.example.visualphysics10.ui.test.FragmentTest;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.textview.MaterialTextView;
 
 import java.util.Objects;
+
 //
 //TODO: a fragment in which the main actions take place - communication with SurfaceView, output and input of data, saving them to the database
 // there are 5 such fragments in total for for each lesson
 // for example this fragment - Velocity (first in RecyclerView), this is where the logic of user interaction with the physics engine and the database takes place
 // there is no point in writing comments for the remaining 4 fragments - they are identical
 public class LessonFragment extends Fragment {
-    private L1FragmentBinding binding;
+    public static boolean isMoving2 = false;
+    public static boolean isMoving4 = false;
+    public static boolean isMoving5 = false;
+    private LessonFragmentBinding binding;
     private PhysicView gameView;
     public static boolean isMoving = false;
     private FloatingActionButton info;
@@ -54,7 +58,7 @@ public class LessonFragment extends Fragment {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        binding = L1FragmentBinding.inflate(inflater, container, false);
+        binding = LessonFragmentBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
@@ -65,7 +69,7 @@ public class LessonFragment extends Fragment {
         count = 0;
         gameView = binding.physicsView;
         selectFlags(position);
-        if(position == 1) binding.land.setVisibility(View.GONE);
+        if (position == 1) binding.land.setVisibility(View.GONE);
         // in this method we wait for SurfaceView until she gets her size. And let's start!
         waitingForSV();
         //sound
@@ -82,8 +86,7 @@ public class LessonFragment extends Fragment {
             if (count % 2 == 0) {
                 playClick();
                 outputData();
-            }
-            else pauseClick();
+            } else pauseClick();
             count++;
         });
         //allows the user to restart the visualization with the input data if if you want to change the data - restart and input
@@ -108,7 +111,7 @@ public class LessonFragment extends Fragment {
     }
 
     private void selectFlags(int position) {
-        switch (position){
+        switch (position) {
             case 0:
                 PhysicsModel.L1 = true;
                 break;
@@ -181,17 +184,35 @@ public class LessonFragment extends Fragment {
     private void pauseClick() {
         play.setImageResource(R.drawable.play_arrow);
         gameView.stopDraw(0);
-        if(position == 4) gameView.stopDraw(1);
+        if (position == 4) gameView.stopDraw(1);
 
     }
 
     private void playClick() {
         play.setImageResource(R.drawable.pause_circle);
-        isMoving = true;
+        startMoving(position);
         if (position == 3) PhysicsModel.beginning = true;
         info.setVisibility(View.VISIBLE);
         gameView.updateMoving(PhysicsData.getSpeed(), 0, 0);
         if (position == 4) gameView.updateMoving(-PhysicsData.getSpeed2(), 0, 1);
+    }
+
+    private void startMoving(int position) {
+        switch (position) {
+            case 0:
+            case 2:
+                isMoving = true;
+                break;
+            case 1:
+                isMoving2 = true;
+                break;
+            case 3:
+                isMoving4 = true;
+                break;
+            case 4:
+                isMoving5 = true;
+                break;
+        }
     }
 
 
@@ -199,7 +220,7 @@ public class LessonFragment extends Fragment {
         requireActivity().getSupportFragmentManager()
                 .beginTransaction()
                 .setCustomAnimations(R.anim.nav_default_enter_anim, R.anim.nav_default_exit_anim)
-                .replace(R.id.container, new FragmentTest())
+                .replace(R.id.container, new FragmentTest(position))
                 .addToBackStack(null)
                 .commit();
     }
@@ -208,14 +229,16 @@ public class LessonFragment extends Fragment {
         requireActivity().getSupportFragmentManager()
                 .beginTransaction()
                 .setCustomAnimations(R.anim.nav_default_enter_anim, R.anim.nav_default_exit_anim)
-                .replace(R.id.container, new FragmentInfo())
+                .replace(R.id.container, new FragmentInfo(position))
                 .addToBackStack(null)
                 .commit();
     }
 
     private void createdFullScreenDialog() {
-        DialogFragment dialogFragment = FullScreenDialog.newInstance();
-        dialogFragment.show(Objects.requireNonNull(getActivity()).getSupportFragmentManager(), "input");
+        DialogFragment fragment;
+        if (position == 4) fragment = FullScreenDialog5.newInstance();
+        else fragment = new FullScreenDialog(position);
+        fragment.show(Objects.requireNonNull(getActivity()).getSupportFragmentManager(), "input");
     }
 
     @SuppressLint("ResourceType")
@@ -223,7 +246,7 @@ public class LessonFragment extends Fragment {
         play.setImageResource(R.drawable.play_arrow);
         count += count % 2;
         gameView.restartClick(0);
-        if(position == 4) gameView.restartClick(1);
+        if (position == 4) gameView.restartClick(1);
         getMessage();
     }
 
@@ -256,7 +279,7 @@ public class LessonFragment extends Fragment {
 
     //choose title for any lesson
     private int selectTitle(int position) {
-        switch (position){
+        switch (position) {
             //title for lesson #1 - velocity and ect..
             case 0:
                 return R.string.titleL1;

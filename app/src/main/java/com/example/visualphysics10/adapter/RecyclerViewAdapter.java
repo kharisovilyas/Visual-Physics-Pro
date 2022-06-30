@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.visualphysics10.databinding.FragmentItemBinding;
 import com.example.visualphysics10.placeholder.PlaceholderContent;
 import com.example.visualphysics10.placeholder2.PlaceHolderContent2;
+import com.example.visualphysics10.placeholder3.PlaceHolderContent3;
 import com.example.visualphysics10.ui.MainFlag;
 
 import java.util.List;
@@ -20,7 +21,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     public List<PlaceholderContent.PlaceHolderItem> mValues;
     public List<PlaceHolderContent2.PlaceHolderItem2> valForTask;
+    public List<PlaceHolderContent3.PlaceHolderItem3> valForLec;
     public boolean mainList;
+    public boolean taskList;
     private final OnLessonListener onLessonListener;
     View view;
 
@@ -29,11 +32,19 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public RecyclerViewAdapter(List<PlaceholderContent.PlaceHolderItem> items, OnLessonListener onLessonListener) {
         mValues = items;
         mainList = true;
+        taskList = false;
         this.onLessonListener = onLessonListener;
     }
     public RecyclerViewAdapter(List<PlaceHolderContent2.PlaceHolderItem2> items, OnLessonListener onLessonListener, String tag) {
         valForTask = items;
+        taskList = true;
         mainList = false;
+        this.onLessonListener = onLessonListener;
+    }
+    public RecyclerViewAdapter(List<PlaceHolderContent3.PlaceHolderItem3> items, OnLessonListener onLessonListener, String tag, int i) {
+        valForLec = items;
+        mainList = false;
+        taskList = false;
         this.onLessonListener = onLessonListener;
     }
 
@@ -53,10 +64,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             holder.mItem = mValues.get(position);
             holder.mIdView.setText(mValues.get(position).title);
             holder.imageView.setImageResource(mValues.get(position).imageView);
-        }else{
+        }else if(taskList){
             holder.taskItem = valForTask.get(position);
             holder.mIdView.setText(valForTask.get(position).title);
             holder.imageView.setImageResource(valForTask.get(position).imageView);
+        }else{
+            holder.LecItem = valForLec.get(position);
+            holder.mIdView.setText(valForLec.get(position).title);
+            holder.imageView.setImageResource(valForLec.get(position).imageView);
         }
     }
 
@@ -64,7 +79,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public int getItemCount() {
         if (mainList) return mValues.size();
-        else return valForTask.size();
+        else if (taskList) return valForTask.size();
+        else return valForLec.size();
     }
 
     @Override
@@ -76,6 +92,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         public final TextView mIdView;
         public PlaceholderContent.PlaceHolderItem mItem;
         public PlaceHolderContent2.PlaceHolderItem2 taskItem;
+        public PlaceHolderContent3.PlaceHolderItem3 LecItem;
         public int position;
         OnLessonListener onLessonListener;
         public final ImageView imageView;

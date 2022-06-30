@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
@@ -17,10 +18,6 @@ import com.example.visualphysics10.engine.Sprite;
 import com.example.visualphysics10.engine.Vector2;
 import com.example.visualphysics10.objects.PhysicsModel;
 import com.example.visualphysics10.ui.MainFlag;
-import com.example.visualphysics10.ui.lesson.L2Fragment;
-import com.example.visualphysics10.ui.lesson.L3Fragment;
-import com.example.visualphysics10.ui.lesson.L4Fragment;
-import com.example.visualphysics10.ui.lesson.L5Fragment;
 import com.example.visualphysics10.ui.lesson.LessonFragment;
 
 import java.util.LinkedList;
@@ -56,30 +53,17 @@ public class PhysicView extends SurfaceView implements SurfaceHolder.Callback {
     //создание сущности модели
     public void addModelGV(int position) {
         synchronized (sprites) {
-            if (position == 3)
+            if (position == 3) {
                 sprites.add(new PhysicsModel(getContext(), 0, PhysicsData.getY0() / 2, 0, 0, 0));
-            if (position == 4) {
+                Log.d("this xyi", " " + position);
+            }
+            else if (position == 4) {
                 sprites.add(new PhysicsModel(getContext(), 50, PhysicsData.getY0() - PhysicsModel.l - 5, 0, 0, 0));
                 sprites.add(new PhysicsModel(getContext(), PhysicsData.getX0() - PhysicsModel.l - 50, PhysicsData.getY0() - PhysicsModel.h - 5, 0, 0, 1));
-            } else
+            } else {
                 sprites.add(new PhysicsModel(getContext(), 0, PhysicsData.getY0() - PhysicsModel.l - 5, 0, 0, 0));
-        }
-    }
-
-    //создание сущности модели в четвертом уроке
-    public void addModelGV4() {
-        synchronized (sprites) {
-            sprites.add(new PhysicsModel(getContext(), 0, PhysicsData.getY0() / 2, 0, 0, 0));
-        }
-    }
-
-    //создание сущности модели в пятом уроке
-    public void addModelGV5(int index) {
-        synchronized (sprites) {
-            if (index == 0)
-                sprites.add(new PhysicsModel(getContext(), 50, PhysicsData.getY0() - PhysicsModel.l - 5, 0, 0, index));
-            else
-                sprites.add(new PhysicsModel(getContext(), PhysicsData.getX0() - PhysicsModel.l - 50, PhysicsData.getY0() - PhysicsModel.h - 5, 0, 0, index));
+                Log.d("thisssssssss xyi", " " + position);
+            }
         }
     }
 
@@ -115,10 +99,9 @@ public class PhysicView extends SurfaceView implements SurfaceHolder.Callback {
         PhysicsModel.beginning = false;
         PhysicsModel.firstDraw = false;
         LessonFragment.isMoving = false;
-        L2Fragment.isMoving = false;
-        L3Fragment.isMoving = false;
-        L4Fragment.isMoving = false;
-        L5Fragment.isMoving = false;
+        LessonFragment.isMoving2 = false;
+        LessonFragment.isMoving4 = false;
+        LessonFragment.isMoving5 = false;
         drawOk = false;
         stopThread();
     }
@@ -182,10 +165,9 @@ public class PhysicView extends SurfaceView implements SurfaceHolder.Callback {
 
     private void stopThreadFlags() {
         LessonFragment.isMoving = false;
-        L2Fragment.isMoving = false;
-        L3Fragment.isMoving = false;
-        L4Fragment.isMoving = false;
-        L5Fragment.isMoving = false;
+        LessonFragment.isMoving2 = false;
+        LessonFragment.isMoving4 = false;
+        LessonFragment.isMoving5 = false;
     }
 
     public void restartClick(int index) {
@@ -214,13 +196,12 @@ public class PhysicView extends SurfaceView implements SurfaceHolder.Callback {
 
         //рисование
         private void onDrawAsync(Canvas canvas) {
-
             canvas.drawColor(Color.WHITE);
             synchronized (sprites) {
                 if (LessonFragment.isMoving) {
                     updateAA(PhysicsData.getAcc(), 0, 0);
                 }
-                if (L2Fragment.isMoving) {
+                if (LessonFragment.isMoving2) {
                     PhysicsModel.firstDraw = false;
                     PhysicsModel.isL2Ended = false;
                     updateAAC(PhysicsData.getRadius(), PhysicsData.getSpeed(), 0);
@@ -230,17 +211,14 @@ public class PhysicView extends SurfaceView implements SurfaceHolder.Callback {
                     paint.setStrokeWidth(10);
                     canvas.drawCircle(canvas.getWidth() / 2, canvas.getHeight() / 2, (float) PhysicsData.getRadius(), paint);
                 }
-                if (L3Fragment.isMoving) {
-                    updateAA(PhysicsData.getAcc(), 0, 0);
-                }
-                if (L4Fragment.isMoving) {
+                if (LessonFragment.isMoving4) {
                     if (PhysicsModel.beginning) {
                         updateGG(PhysicsData.getSpeed(), PhysicsData.getAngle(), 0);
                         PhysicsModel.beginning = false;
                     }
                     updateAA(0, 1, 0);
                 }
-                if (L5Fragment.isMoving) {
+                if (LessonFragment.isMoving5) {
                     updateAA(0, 0, 0);
                     updateAA(0, 0, 1);
                     if (PhysicsData.getElasticImpulse()) {

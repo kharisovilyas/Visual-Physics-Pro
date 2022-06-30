@@ -7,6 +7,7 @@
     <string name="title_info_4">О свободном падении</string>
     <string name="title_info_5">Немного об импульсе</string>
     <string name="test">Задачи</string>
+    <string name="lecture">Лекции</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="afterSaveData">Найденные данные</string>
     <string name="output_time">Прошедшее время</string>
@@ -42,10 +43,7 @@
     <string name="login_failed">"Login failed"</string>
     <string name="title_activity_splash">SplashActivity</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
+    <string name="send"><font size="12">Отправить работу</font></string>
     <string name="menu_1"><font size="18">Лекции</font></string>
     <string name="menu_2"><font size="18">Задачи</font></string>
     <string name="menu_3"><font size="18">Настройки</font></string>
@@ -141,11 +139,11 @@
         Так, например, система тел на поверхности Земли не может считаться замкнутой из-за силы тяжести, действующей на все тела,
         однако сумма проекций импульсов на горизонтальное направление может оставаться неизменной (при отсутствии трения), т. к. в этом направлении сила тяжести не действует.
     </string>
-    <string name="elastic">\Упругое\</string>
+    <string name="elastic">Упругое</string>
     <string name="noElastic"> Неупругое  </string>
-    <string name="selectFlag">\Тип соударения\</string>
-    <string name="saveSettings">\Сохранить настройки\</string>
-    <string name="repeat_education">\Нажмите для прохождения обучения\</string>
+    <string name="selectFlag">Тип соударения</string>
+    <string name="saveSettings">Сохранить настройки</string>
+    <string name="repeat_education">Нажмите для прохождения обучения</string>
     <string name="aboutUs">Visual Physics - это образовательная платформа, в которой пользователь может улучшить свое понимание физики при помощи визуализации или просмотра специально отобранных лекций, а также попрактиковаться в решении задач базового уровня сложности для отработки полученных навыков."</string>
     <string name="aboutCreated">Информация о создателях</string>
     <string name="toEnd"> Поздравляем !</string>

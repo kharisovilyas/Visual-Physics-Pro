@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -31,10 +30,10 @@ import com.example.visualphysics10.adapter.RecyclerViewAdapter;
 import com.example.visualphysics10.database.LessonData;
 import com.example.visualphysics10.database.LessonViewModel;
 import com.example.visualphysics10.databinding.FragmentItemListBinding;
-import com.example.visualphysics10.ui.item.FragmentLecture;
 import com.example.visualphysics10.ui.item.MyProgressFragment;
 import com.example.visualphysics10.ui.item.SettingsFragment1;
-import com.example.visualphysics10.ui.item.TaskListFragment;
+import com.example.visualphysics10.ui.lectures.LecturesFragList;
+import com.example.visualphysics10.ui.test.TaskListFragment;
 import com.example.visualphysics10.placeholder.PlaceholderContent;
 import com.example.visualphysics10.ui.MainFlag;
 import com.example.visualphysics10.ui.lab.LabFragmentList;
@@ -45,7 +44,7 @@ import com.google.android.material.navigation.NavigationView;
 import java.util.List;
 import java.util.Objects;
 
-public class ItemFragment extends Fragment implements RecyclerViewAdapter.OnLessonListener {
+public class ItemFragmentList extends Fragment implements RecyclerViewAdapter.OnLessonListener {
     private static final String ARG_COLUMN_COUNT = "column-count";
     private int mColumnCount = 1;
     View header;
@@ -178,7 +177,7 @@ public class ItemFragment extends Fragment implements RecyclerViewAdapter.OnLess
         Fragment fragment;
         switch (menu.getItemId()) {
             case R.id.lecture:
-                fragment = new FragmentLecture();
+                fragment = new LecturesFragList();
                 break;
             case R.id.task:
                 fragment = new TaskListFragment();
@@ -236,24 +235,6 @@ public class ItemFragment extends Fragment implements RecyclerViewAdapter.OnLess
                 .replace(R.id.container, new LessonEducFrag())
                 .addToBackStack(null)
                 .commit();
-    }
-
-
-    private Fragment selectFragment(int position) {
-        switch (position) {
-            case 0:
-                return new LessonFragment(position);
-            case 1:
-                return new L2Fragment();
-            case 2:
-                return new L3Fragment();
-            case 3:
-                return new L4Fragment();
-            case 4:
-                return new L5Fragment();
-            default:
-                return new LessonEducFrag();
-        }
     }
 
 }

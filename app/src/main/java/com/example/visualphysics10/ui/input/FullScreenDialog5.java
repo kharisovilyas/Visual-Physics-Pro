@@ -1,4 +1,4 @@
-package com.example.visualphysics10.ui.inform.input;
+package com.example.visualphysics10.ui.input;
 
 import android.app.Dialog;
 import android.os.Bundle;
