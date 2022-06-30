@@ -1,4 +1,4 @@
-package com.example.visualphysics10.inform.youtube;
+package com.example.visualphysics10.ui.inform.youtube;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -96,15 +96,15 @@ public class FragmentInfo extends Fragment {
     private String selectVideoId() {
         switch (MainFlag.getPosition()) {
             case 0:
-                return "1OkRaUmRMsQ";
+                return getString(R.string.video1);
             case 1:
-                return "CGDrHzP-qnA";
+                return getString(R.string.video2);
             case 2:
-                return "ygDsGszS6w8";
+                return getString(R.string.video3);
             case 3:
-                return "Qrpl6HNdE4Q";
+                return getString(R.string.video4);
             case 4:
-                return "cHWJr0PufIg";
+                return getString(R.string.video5);
             default:
                 return null;
         }

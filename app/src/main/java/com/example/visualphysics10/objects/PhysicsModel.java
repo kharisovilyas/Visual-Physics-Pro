@@ -7,11 +7,13 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.Rect;
 import android.media.MediaPlayer;
+import android.util.Log;
 
 import com.example.visualphysics10.database.PhysicsData;
 import com.example.visualphysics10.engine.PhysicsSprite;
 import com.example.visualphysics10.engine.Vector2;
-import com.example.visualphysics10.itemUi.SettingsFragment2;
+import com.example.visualphysics10.ui.item.SettingsFragment2;
+import com.example.visualphysics10.ui.lesson.L2Fragment;
 
 //TODO: класс сущности физ. моделек наследуется от PhysicsSprite где у нас описаны основные параметры моделек наследуемые от класса Sprites
 // в этом классе у нас так же описивается изменение координаты моделек (движение) и их взаимодействие
@@ -86,19 +88,10 @@ public class PhysicsModel extends PhysicsSprite {
     }
 
     //работа со звуком
-    public static void addSound1(MediaPlayer end) {
+    public static void addSound(MediaPlayer end, MediaPlayer rotation, MediaPlayer landing, MediaPlayer collision ) {
         PhysicsModel.end = end;
-    }
-
-    public static void addSound2(MediaPlayer rotation) {
         PhysicsModel.rotation = rotation;
-    }
-
-    public static void addSound4(MediaPlayer landing) {
         PhysicsModel.landing = landing;
-    }
-
-    public static void addSound5(MediaPlayer collision) {
         PhysicsModel.collision = collision;
     }
 

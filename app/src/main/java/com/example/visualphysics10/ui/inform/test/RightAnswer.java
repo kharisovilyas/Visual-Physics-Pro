@@ -1,4 +1,4 @@
-package com.example.visualphysics10.inform.test;
+package com.example.visualphysics10.ui.inform.test;
 
 abstract class RightAnswer {
 

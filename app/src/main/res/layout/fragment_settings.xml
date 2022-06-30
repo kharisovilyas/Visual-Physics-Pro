@@ -114,7 +114,7 @@
 
         <fragment
             android:id="@+id/pref"
-            class="com.example.visualphysics10.ui.fragments_dl.SettingsFragment2"
+            android:name="com.example.visualphysics10.ui.item.SettingsFragment2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 

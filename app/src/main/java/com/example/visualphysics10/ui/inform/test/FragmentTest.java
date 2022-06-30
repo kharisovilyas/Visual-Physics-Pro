@@ -1,4 +1,4 @@
-package com.example.visualphysics10.inform.test;
+package com.example.visualphysics10.ui.inform.test;
 
 import android.content.DialogInterface;
 import android.graphics.Color;
@@ -24,6 +24,8 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textview.MaterialTextView;
 
+import org.jsoup.nodes.Document;
+
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -31,9 +33,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class FragmentTest5 extends Fragment {
-    public static FragmentTest5 newInstance(String param1, String param2) {
-        return new FragmentTest5();
+public class FragmentTest extends Fragment {
+    private Thread secondThread;
+    private Runnable runnable;
+    private Document doc;
+
+    public static FragmentTest newInstance(String param1, String param2) {
+        return new FragmentTest();
     }
 
     //TODO: tasks for all lessons
@@ -60,6 +66,7 @@ public class FragmentTest5 extends Fragment {
         addToolbar();
         getDataFromNetwork(0);
         binding.saveAnswer.setOnClickListener(v -> {
+            binding.answer.setEnabled(false);
             setAnswer();
         });
         binding.toNext.setOnClickListener(v -> {
@@ -79,6 +86,7 @@ public class FragmentTest5 extends Fragment {
             right = false;
         });
     }
+
 
     private void createdPositive() {
         Snackbar snackbar = Snackbar
@@ -120,13 +128,12 @@ public class FragmentTest5 extends Fragment {
     }
 
 
-
     //the method checks the entered answer and outputs the score to the user
     private void setAnswer() {
         TextInputEditText answer = binding.answer;
         try {
-            right = RightAnswer.task1FromL5(Double.parseDouble(Objects.requireNonNull(answer.getText()).toString()));
-            right2 = RightAnswer.task2FromL5(Double.parseDouble(Objects.requireNonNull(answer.getText()).toString()));
+            right = RightAnswer.task1FromL1(Double.parseDouble(Objects.requireNonNull(answer.getText()).toString()));
+            right2 = RightAnswer.task2FromL1(Double.parseDouble(Objects.requireNonNull(answer.getText()).toString()));
             outputMark();
         } catch (Exception e) {
             e.printStackTrace();
@@ -153,7 +160,6 @@ public class FragmentTest5 extends Fragment {
             Call<TestingList> task = AppForNet.api.getTask();
             taskList = new ArrayList<>();
             taskTextView = binding.materialTextView;
-
             //parsing task text from the site, all entities in the folder "net"
             task.enqueue(new Callback<TestingList>() {
                 @Override
@@ -164,19 +170,14 @@ public class FragmentTest5 extends Fragment {
                         taskTextView.setText((CharSequence) taskList);
                     }
                 }
-
                 //in case of failure, parsing from R.string.task
                 @Override
                 public void onFailure(Call<TestingList> call, Throwable t) {
-                    try{
-                        binding.progressBar.setVisibility(View.GONE);
-                    }catch (NullPointerException e){
-                        e.printStackTrace();
-                    }
+                    binding.progressBar.setVisibility(View.GONE);
                     if (index == 0) {
-                        taskTextView.setText(R.string.l5task1);
+                        taskTextView.setText(R.string.l1task1);
                     } else {
-                        taskTextView.setText(R.string.l5task2);
+                        taskTextView.setText(R.string.l1task2);
                     }
                 }
             });
@@ -191,11 +192,5 @@ public class FragmentTest5 extends Fragment {
         toolbar.setNavigationOnClickListener(v -> {
             requireActivity().onBackPressed();
         });
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        binding = null;
     }
 }

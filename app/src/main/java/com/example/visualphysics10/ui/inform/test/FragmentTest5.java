@@ -1,4 +1,4 @@
-package com.example.visualphysics10.inform.test;
+package com.example.visualphysics10.ui.inform.test;
 
 import android.content.DialogInterface;
 import android.graphics.Color;
@@ -13,7 +13,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.visualphysics10.MainActivity;
 import com.example.visualphysics10.R;
-import com.example.visualphysics10.databinding.FragmentTest3Binding;
+import com.example.visualphysics10.databinding.FragmentTestBinding;
 import com.example.visualphysics10.net.AppForNet;
 import com.example.visualphysics10.net.InternetConnection;
 import com.example.visualphysics10.net.TestingList;
@@ -31,10 +31,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class FragmentTest3 extends Fragment {
+public class FragmentTest5 extends Fragment {
+    public static FragmentTest5 newInstance(String param1, String param2) {
+        return new FragmentTest5();
+    }
 
     //TODO: tasks for all lessons
-    private FragmentTest3Binding binding;
+    private FragmentTestBinding binding;
     private ArrayList<Testings> taskList;
     private MaterialTextView taskTextView;
     private boolean right;
@@ -47,7 +50,7 @@ public class FragmentTest3 extends Fragment {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        binding = FragmentTest3Binding.inflate(inflater, container, false);
+        binding = FragmentTestBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
@@ -57,7 +60,6 @@ public class FragmentTest3 extends Fragment {
         addToolbar();
         getDataFromNetwork(0);
         binding.saveAnswer.setOnClickListener(v -> {
-            binding.answer.setEnabled(false);
             setAnswer();
         });
         binding.toNext.setOnClickListener(v -> {
@@ -118,12 +120,13 @@ public class FragmentTest3 extends Fragment {
     }
 
 
+
     //the method checks the entered answer and outputs the score to the user
     private void setAnswer() {
         TextInputEditText answer = binding.answer;
         try {
-            right = RightAnswer.task1FromL3(Double.parseDouble(Objects.requireNonNull(answer.getText()).toString()));
-            right2 = RightAnswer.task2FromL3(Double.parseDouble(Objects.requireNonNull(answer.getText()).toString()));
+            right = RightAnswer.task1FromL5(Double.parseDouble(Objects.requireNonNull(answer.getText()).toString()));
+            right2 = RightAnswer.task2FromL5(Double.parseDouble(Objects.requireNonNull(answer.getText()).toString()));
             outputMark();
         } catch (Exception e) {
             e.printStackTrace();
@@ -171,9 +174,9 @@ public class FragmentTest3 extends Fragment {
                         e.printStackTrace();
                     }
                     if (index == 0) {
-                        taskTextView.setText(R.string.l3task1);
+                        taskTextView.setText(R.string.l5task1);
                     } else {
-                        taskTextView.setText(R.string.l3task2);
+                        taskTextView.setText(R.string.l5task2);
                     }
                 }
             });

@@ -1,4 +1,4 @@
-package com.example.visualphysics10.inform.test;
+package com.example.visualphysics10.ui.inform.test;
 
 import android.content.DialogInterface;
 import android.graphics.Color;
@@ -13,7 +13,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.visualphysics10.MainActivity;
 import com.example.visualphysics10.R;
-import com.example.visualphysics10.databinding.FragmentTest2Binding;
+import com.example.visualphysics10.databinding.FragmentTest4Binding;
 import com.example.visualphysics10.net.AppForNet;
 import com.example.visualphysics10.net.InternetConnection;
 import com.example.visualphysics10.net.TestingList;
@@ -31,13 +31,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class FragmentTest2 extends Fragment {
-    public static FragmentTest2 newInstance(String param1, String param2) {
-        return new FragmentTest2();
+public class FragmentTest4 extends Fragment {
+    public static FragmentTest4 newInstance(String param1, String param2) {
+        return new FragmentTest4();
     }
 
     //TODO: tasks for all lessons
-    private FragmentTest2Binding binding;
+    private FragmentTest4Binding binding;
     private ArrayList<Testings> taskList;
     private MaterialTextView taskTextView;
     private boolean right;
@@ -50,7 +50,7 @@ public class FragmentTest2 extends Fragment {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        binding = FragmentTest2Binding.inflate(inflater, container, false);
+        binding = FragmentTest4Binding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
@@ -125,8 +125,8 @@ public class FragmentTest2 extends Fragment {
     private void setAnswer() {
         TextInputEditText answer = binding.answer;
         try {
-            right = RightAnswer.task1FromL2(Double.parseDouble(Objects.requireNonNull(answer.getText()).toString()));
-            right2 = RightAnswer.task2FromL2(Double.parseDouble(Objects.requireNonNull(answer.getText()).toString()));
+            right = RightAnswer.task1FromL4(Double.parseDouble(Objects.requireNonNull(answer.getText()).toString()));
+            right2 = RightAnswer.task2FromL4(Double.parseDouble(Objects.requireNonNull(answer.getText()).toString()));
             outputMark();
         } catch (Exception e) {
             e.printStackTrace();
@@ -174,9 +174,9 @@ public class FragmentTest2 extends Fragment {
                         e.printStackTrace();
                     }
                     if (index == 0) {
-                        taskTextView.setText(R.string.l2task1);
+                        taskTextView.setText(R.string.l4task1);
                     } else {
-                        taskTextView.setText(R.string.l2task2);
+                        taskTextView.setText(R.string.l4task2);
                     }
                 }
             });

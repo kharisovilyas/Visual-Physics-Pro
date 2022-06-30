@@ -1,4 +1,4 @@
-package com.example.visualphysics10.inform.input;
+package com.example.visualphysics10.ui.inform.input;
 
 import android.app.Dialog;
 import android.content.SharedPreferences;
@@ -10,13 +10,12 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 
 import com.example.visualphysics10.MainActivity;
 import com.example.visualphysics10.R;
 import com.example.visualphysics10.database.LessonData;
 import com.example.visualphysics10.database.LessonViewModel;
+import com.example.visualphysics10.database.PhysicsData;
 import com.example.visualphysics10.databinding.FullscreenDialogBinding;
 import com.example.visualphysics10.ui.MainFlag;
 import com.google.android.material.appbar.MaterialToolbar;
@@ -24,7 +23,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
-import java.util.List;
 import java.util.Objects;
 
 public class FullScreenDialog extends DialogFragment {
@@ -125,7 +123,7 @@ public class FullScreenDialog extends DialogFragment {
         FloatingActionButton saveInput = binding.save;
         saveInput.setOnClickListener(v -> {
             try {
-                saveData();
+                inputData();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -133,35 +131,24 @@ public class FullScreenDialog extends DialogFragment {
         });
     }
 
-
-    private void saveData() {
-        viewModel = ViewModelProviders.of(requireActivity()).get(LessonViewModel.class);
-        viewModel.getLessonLiveData().observe(this, new Observer<List<LessonData>>() {
-            @Override
-            public void onChanged(List<LessonData> lessonData) {
-                inputData();
-                lessonData.set(0, lessonDataList);
-            }
-        });
-    }
-
     //save to db data from EditText
     private void inputData() {
-        lessonDataList.speed = toDouble(input_speed);
+        PhysicsData.setSpeed(toDouble(input_speed));
         switch (MainFlag.getPosition()) {
             case 0:
-                lessonDataList.acc = toDouble(input_acc);
+                PhysicsData.setAcc(toDouble(input_acc));
                 break;
             case 1:
-                lessonDataList.radius = toDouble(input_radius);
+                PhysicsData.setRadius(toDouble(input_radius));
                 break;
             case 2:
-                lessonDataList.strength = toDouble(input_force);
-                lessonDataList.mass1 = toDouble(input_mass);
+                PhysicsData.setForce(toDouble(input_force));
+                PhysicsData.setMass1(toDouble(input_mass));
+                PhysicsData.setAcc(toDouble(input_force) / toDouble(input_mass));
                 break;
             case 3:
-                lessonDataList.angle = toDouble(input_angle);
-                lessonDataList.acc = toDouble(input_acc);
+                PhysicsData.setAngle(toDouble(input_angle));
+                PhysicsData.setAcc(toDouble(input_acc));
                 break;
         }
     }

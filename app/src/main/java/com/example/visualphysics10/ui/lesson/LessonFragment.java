@@ -1,5 +1,4 @@
-package com.example.visualphysics10.lessonsFragment;
-
+package com.example.visualphysics10.ui.lesson;
 
 import android.annotation.SuppressLint;
 import android.media.MediaPlayer;
@@ -19,62 +18,65 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 
 import com.example.visualphysics10.MainActivity;
 import com.example.visualphysics10.R;
-import com.example.visualphysics10.database.LessonData;
-import com.example.visualphysics10.database.LessonViewModel;
 import com.example.visualphysics10.database.PhysicsData;
-import com.example.visualphysics10.databinding.L5FragmentBinding;
-import com.example.visualphysics10.inform.input.FullScreenDialog5;
-import com.example.visualphysics10.inform.youtube.FragmentInfo;
-import com.example.visualphysics10.inform.test.FragmentTest5;
+import com.example.visualphysics10.databinding.L1FragmentBinding;
+import com.example.visualphysics10.ui.inform.input.FullScreenDialog;
+import com.example.visualphysics10.ui.inform.youtube.FragmentInfo;
+import com.example.visualphysics10.ui.inform.test.FragmentTest;
 import com.example.visualphysics10.objects.PhysicsModel;
-import com.example.visualphysics10.physics.MathPart;
 import com.example.visualphysics10.physics.PhysicView;
+import com.example.visualphysics10.ui.MainFlag;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.textview.MaterialTextView;
 
-import java.util.List;
 import java.util.Objects;
-//TODO: Look in L1Fragment if logic this fragment unclear
-// because the identical fragment
-public class L5Fragment extends Fragment {
+//
+//TODO: a fragment in which the main actions take place - communication with SurfaceView, output and input of data, saving them to the database
+// there are 5 such fragments in total for for each lesson
+// for example this fragment - Velocity (first in RecyclerView), this is where the logic of user interaction with the physics engine and the database takes place
+// there is no point in writing comments for the remaining 4 fragments - they are identical
+public class LessonFragment extends Fragment {
+    private L1FragmentBinding binding;
     private PhysicView gameView;
     public static boolean isMoving = false;
     private FloatingActionButton info;
     private FloatingActionButton play;
     private int count = 0;
-    private L5FragmentBinding binding;
-    private LessonViewModel viewModel;
-    private DrawerLayout drawerLayout;
-    private NavigationView navigation;
-    private MediaPlayer collision;
+    private final int position;
 
+    public LessonFragment(int position) {
+        this.position = position;
+    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        binding = L5FragmentBinding.inflate(inflater, container, false);
+        binding = L1FragmentBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        PhysicsModel.L5 = true;
-        gameView = binding.physicsView;
-        waitingForSV();
-        addMediaPlayer();
         addToolbar();
         count = 0;
+        gameView = binding.physicsView;
+        selectFlags(position);
+        if(position == 1) binding.land.setVisibility(View.GONE);
+        // in this method we wait for SurfaceView until she gets her size. And let's start!
+        waitingForSV();
+        //sound
+        addMediaPlayer();
+        //
         play = binding.play;
         FloatingActionButton restart = binding.restart;
         FloatingActionButton startInput = binding.startInput;
         FloatingActionButton startTest = binding.startTest;
         info = binding.info;
+        //double click on this button calls another function - this way we save space in fragment
         getMessage();
         play.setOnClickListener(v -> {
             if (count % 2 == 0) {
@@ -84,22 +86,56 @@ public class L5Fragment extends Fragment {
             else pauseClick();
             count++;
         });
+        //allows the user to restart the visualization with the input data if if you want to change the data - restart and input
         restart.setOnClickListener(v -> {
-            addMediaPlayer();
             createDialog();
         });
+        //create Dialog where input Data for visualization
         startInput.setOnClickListener(v -> {
             createdFullScreenDialog();
         });
 
+        //start testings
         startTest.setOnClickListener(v -> {
             startTesting();
         });
 
+        //when setVisible - we can click in info and watch YouTube Video
         info.setOnClickListener(v -> {
             gameView.stopThread();
             createdFullScreenInfo();
         });
+    }
+
+    private void selectFlags(int position) {
+        switch (position){
+            case 0:
+                PhysicsModel.L1 = true;
+                break;
+            case 1:
+                PhysicsModel.L2 = true;
+                PhysicsModel.L2start = true;
+                PhysicsModel.firstDraw = true;
+                break;
+            case 2:
+                PhysicsModel.L3 = true;
+                break;
+            case 3:
+                PhysicsModel.L4 = true;
+                break;
+            case 4:
+                PhysicsModel.L5 = true;
+                break;
+
+        }
+    }
+
+    private void addMediaPlayer() {
+        MediaPlayer end = MediaPlayer.create(getContext(), R.raw.end);
+        MediaPlayer rotation = MediaPlayer.create(getContext(), R.raw.rotation);
+        MediaPlayer landing = MediaPlayer.create(getContext(), R.raw.landling);
+        MediaPlayer collision = MediaPlayer.create(getContext(), R.raw.collision);
+        PhysicsModel.addSound(end, rotation, landing, collision);
     }
 
     private void waitingForSV() {
@@ -108,57 +144,32 @@ public class L5Fragment extends Fragment {
             @Override
             public void run() {
                 //call the engine constructor for first fragment to Velocity
-                gameView.addModelGV5(0);
-                gameView.addModelGV5(1);
+                gameView.addModelGV(position);
             }
             //minimal latency for users
         }, 100);
     }
 
-    private void addMediaPlayer() {
-        //подумать ...
-        collision = MediaPlayer.create(getContext(), R.raw.collision);
-        PhysicsModel.addSound5(collision);
-    }
-
     private void getMessage() {
         addToolbarNav();
         MaterialTextView outputMes = binding.outputSpeed;
-        MaterialTextView outputNull = binding.outputMass1;
-        MaterialTextView outputNull2 = binding.outputSpeed2;
-        MaterialTextView outputNull3 = binding.outputMass2;
-        MaterialTextView outputNull4 = binding.outputImpulse1;
-        MaterialTextView outputNull5 = binding.outputImpulse2;
+        MaterialTextView outputNull = binding.outputAcc;
         outputMes.setText(R.string.outputMes);
         outputNull.setText("");
-        outputNull2.setText("");
-        outputNull3.setText("");
-        outputNull4.setText("");
-        outputNull5.setText("");
     }
 
+    //Output Data
+    @SuppressLint("SetTextI18n")
     public void outputData() {
-        drawerLayout = binding.drawerLayout;
-        navigation = binding.navigationView;
+        DrawerLayout drawerLayout = binding.drawerLayout;
+        NavigationView navigation = binding.navigationView;
         addToolbarNav();
         MaterialTextView outputSpeed = binding.outputSpeed;
-        MaterialTextView outputMass1 = binding.outputMass1;
-        MaterialTextView outputSpeed2 = binding.outputSpeed2;
-        MaterialTextView outputMass2 = binding.outputMass2;
-        MaterialTextView outputImpulse1 = binding.outputImpulse1;
-        MaterialTextView outputImpulse2 = binding.outputImpulse2;
-        String string = getString(R.string.outputSpeed1) + "\n" + PhysicsData.getSpeed() + " [м/с]";
-        String s1 = getString(R.string.outputSpeed2) + "\n" + PhysicsData.getSpeed2() + " [м/с]";
-        String s2 = getString(R.string.outputMass1) + "\n" + PhysicsData.getMass1() + " [кг]";
-        String s3 = getString(R.string.outputMass2) + "\n" + PhysicsData.getMass2() + " [кг]";
-        String s4 = getString(R.string.outputImp1) + "\n" + MathPart.getImp1(PhysicsData.getSpeed(), PhysicsData.getMass1()) + " [кг * м/с]";
-        String s5 = getString(R.string.outputImp2) + "\n" + MathPart.getImp2(PhysicsData.getSpeed2(), PhysicsData.getMass2()) + " [кг * м/с]";
+        MaterialTextView outputAcc = binding.outputAcc;
+        String string = getString(R.string.outputSpeed) + "\n" + PhysicsData.getSpeed() + " [м/с]";
+        String string2 = getString(R.string.outputAcc) + "\n" + PhysicsData.getAcc() + " [м/с^2]";
         outputSpeed.setText(string);
-        outputSpeed2.setText(s1);
-        outputMass1.setText(s2);
-        outputMass2.setText(s3);
-        outputImpulse1.setText(s4);
-        outputImpulse2.setText(s5);
+        outputAcc.setText(string2);
     }
 
     private void addToolbarNav() {
@@ -167,31 +178,20 @@ public class L5Fragment extends Fragment {
         toolbar.setTitle("Введенные данные");
     }
 
-
     private void pauseClick() {
         play.setImageResource(R.drawable.play_arrow);
         gameView.stopDraw(0);
-        gameView.stopDraw(1);
+        if(position == 4) gameView.stopDraw(1);
 
     }
 
     private void playClick() {
         play.setImageResource(R.drawable.pause_circle);
         isMoving = true;
+        if (position == 3) PhysicsModel.beginning = true;
         info.setVisibility(View.VISIBLE);
-        viewModel = ViewModelProviders.of(requireActivity()).get(LessonViewModel.class);
-        viewModel.getLessonLiveData().observe(this, new Observer<List<LessonData>>() {
-            @Override
-            public void onChanged(List<LessonData> lessonData) {
-                PhysicsData.setSpeed(lessonData.get(0).speed);
-                PhysicsData.setMass1(lessonData.get(0).mass1);
-                PhysicsData.setSpeed2(lessonData.get(0).speed2);
-                PhysicsData.setMass2(lessonData.get(0).mass2);
-                PhysicsData.setElasticImpulse(lessonData.get(0).elasticImpulse);
-            }
-        });
         gameView.updateMoving(PhysicsData.getSpeed(), 0, 0);
-        gameView.updateMoving(-PhysicsData.getSpeed2(), 0, 1);
+        if (position == 4) gameView.updateMoving(-PhysicsData.getSpeed2(), 0, 1);
     }
 
 
@@ -199,7 +199,7 @@ public class L5Fragment extends Fragment {
         requireActivity().getSupportFragmentManager()
                 .beginTransaction()
                 .setCustomAnimations(R.anim.nav_default_enter_anim, R.anim.nav_default_exit_anim)
-                .replace(R.id.container, new FragmentTest5())
+                .replace(R.id.container, new FragmentTest())
                 .addToBackStack(null)
                 .commit();
     }
@@ -214,7 +214,7 @@ public class L5Fragment extends Fragment {
     }
 
     private void createdFullScreenDialog() {
-        DialogFragment dialogFragment = FullScreenDialog5.newInstance();
+        DialogFragment dialogFragment = FullScreenDialog.newInstance();
         dialogFragment.show(Objects.requireNonNull(getActivity()).getSupportFragmentManager(), "input");
     }
 
@@ -223,14 +223,16 @@ public class L5Fragment extends Fragment {
         play.setImageResource(R.drawable.play_arrow);
         count += count % 2;
         gameView.restartClick(0);
-        gameView.restartClick(1);
+        if(position == 4) gameView.restartClick(1);
         getMessage();
     }
 
+
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.icon_toolbar, menu);
+        setHasOptionsMenu(true);
+        super.onCreateOptionsMenu(menu, inflater);
     }
 
     @SuppressLint("RestrictedApi")
@@ -238,7 +240,7 @@ public class L5Fragment extends Fragment {
         Toolbar toolbar = binding.toolbar;
         ((MainActivity) Objects.requireNonNull(getActivity())).setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.arrow_back);
-        toolbar.setTitle(R.string.titleL5);
+        toolbar.setTitle(selectTitle(position));
         toolbar.setNavigationOnClickListener(v -> {
             getActivity().onBackPressed();
         });
@@ -247,9 +249,39 @@ public class L5Fragment extends Fragment {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 createDrawer();
-                return true;
+                return false;
             }
         });
+    }
+
+    //choose title for any lesson
+    private int selectTitle(int position) {
+        switch (position){
+            //title for lesson #1 - velocity and ect..
+            case 0:
+                return R.string.titleL1;
+            case 1:
+                return R.string.titleL2;
+            case 2:
+                return R.string.titleL3;
+            case 3:
+                return R.string.titleL4;
+            case 4:
+                return R.string.titleL5;
+            default:
+                return 0;
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        PhysicsModel.L1 = false;
+        PhysicsModel.L2 = false;
+        PhysicsModel.L3 = false;
+        PhysicsModel.L4 = false;
+        PhysicsModel.L5 = false;
+        binding = null;
     }
 
     private void createDrawer() {
@@ -260,13 +292,6 @@ public class L5Fragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        PhysicsModel.L5 = false;
-        binding = null;
-    }
 }

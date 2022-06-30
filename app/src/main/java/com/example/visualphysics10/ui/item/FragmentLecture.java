@@ -1,4 +1,4 @@
-package com.example.visualphysics10.itemUi;
+package com.example.visualphysics10.ui.item;
 
 import android.app.Dialog;
 import android.os.Bundle;

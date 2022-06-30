@@ -1,4 +1,4 @@
-package com.example.visualphysics10.lessonsFragment;
+package com.example.visualphysics10.ui.lesson;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -22,36 +22,28 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 
 import com.example.visualphysics10.MainActivity;
 import com.example.visualphysics10.R;
-import com.example.visualphysics10.database.LessonData;
 import com.example.visualphysics10.database.LessonViewModel;
 import com.example.visualphysics10.database.PhysicsData;
 import com.example.visualphysics10.databinding.L1FragmentBinding;
-import com.example.visualphysics10.inform.input.FullScreenDialog;
-import com.example.visualphysics10.inform.youtube.FragmentInfo;
-import com.example.visualphysics10.inform.test.FragmentTest;
 import com.example.visualphysics10.objects.PhysicsModel;
 import com.example.visualphysics10.physics.PhysicView;
 import com.example.visualphysics10.ui.EndEducationDialog;
 import com.example.visualphysics10.ui.MainFlag;
+import com.example.visualphysics10.ui.inform.input.FullScreenDialog;
+import com.example.visualphysics10.ui.inform.test.FragmentTest;
+import com.example.visualphysics10.ui.inform.youtube.FragmentInfo;
 import com.getkeepsafe.taptargetview.TapTarget;
 import com.getkeepsafe.taptargetview.TapTargetSequence;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.textview.MaterialTextView;
 
-import java.util.List;
 import java.util.Objects;
-//
-//TODO: a fragment in which the main actions take place - communication with SurfaceView, output and input of data, saving them to the database
-// there are 5 such fragments in total for for each lesson
-// for example this fragment - Velocity (first in RecyclerView), this is where the logic of user interaction with the physics engine and the database takes place
-// there is no point in writing comments for the remaining 4 fragments - they are identical
-public class L1Fragment extends Fragment {
+
+public class LessonEducFrag extends Fragment {
     private L1FragmentBinding binding;
     private PhysicView gameView;
     public static boolean isMoving = false;
@@ -132,8 +124,11 @@ public class L1Fragment extends Fragment {
     }
 
     private void addMediaPlayer() {
-        end = MediaPlayer.create(getContext(), R.raw.end);
-        PhysicsModel.addSound1(end);
+        MediaPlayer end = MediaPlayer.create(getContext(), R.raw.end);
+        MediaPlayer rotation = MediaPlayer.create(getContext(), R.raw.rotation);
+        MediaPlayer landing = MediaPlayer.create(getContext(), R.raw.landling);
+        MediaPlayer collision = MediaPlayer.create(getContext(), R.raw.collision);
+        PhysicsModel.addSound(end, rotation, landing, collision);
     }
 
     private void waitingForSV() {
@@ -142,7 +137,7 @@ public class L1Fragment extends Fragment {
             @Override
             public void run() {
                 //call the engine constructor for first fragment to Velocity
-                gameView.addModelGV();
+                gameView.addModelGV(0);
             }
             //minimal latency for users
         }, 100);
@@ -303,14 +298,6 @@ public class L1Fragment extends Fragment {
         play.setImageResource(R.drawable.pause_circle);
         isMoving = true;
         info.setVisibility(View.VISIBLE);
-        viewModel = ViewModelProviders.of(requireActivity()).get(LessonViewModel.class);
-        viewModel.getLessonLiveData().observe(this, new Observer<List<LessonData>>() {
-            @Override
-            public void onChanged(List<LessonData> lessonData) {
-                PhysicsData.setSpeed(lessonData.get(0).speed);
-                PhysicsData.setAcc(lessonData.get(0).acc);
-            }
-        });
         gameView.updateMoving(PhysicsData.getSpeed(), 0, 0);
     }
 
@@ -391,3 +378,4 @@ public class L1Fragment extends Fragment {
     }
 
 }
+

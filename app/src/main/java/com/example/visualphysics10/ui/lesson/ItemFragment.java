@@ -1,4 +1,4 @@
-package com.example.visualphysics10.adapter;
+package com.example.visualphysics10.ui.lesson;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -19,7 +19,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -28,18 +27,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.visualphysics10.MainActivity;
 import com.example.visualphysics10.R;
+import com.example.visualphysics10.adapter.RecyclerViewAdapter;
 import com.example.visualphysics10.database.LessonData;
 import com.example.visualphysics10.database.LessonViewModel;
 import com.example.visualphysics10.databinding.FragmentItemListBinding;
-import com.example.visualphysics10.itemUi.SettingsFragment1;
-import com.example.visualphysics10.itemUi.TaskListFragment;
-import com.example.visualphysics10.lessonsFragment.L1Fragment;
-import com.example.visualphysics10.lessonsFragment.L2Fragment;
-import com.example.visualphysics10.lessonsFragment.L3Fragment;
-import com.example.visualphysics10.lessonsFragment.L4Fragment;
-import com.example.visualphysics10.lessonsFragment.L5Fragment;
+import com.example.visualphysics10.ui.item.FragmentLecture;
+import com.example.visualphysics10.ui.item.MyProgressFragment;
+import com.example.visualphysics10.ui.item.SettingsFragment1;
+import com.example.visualphysics10.ui.item.TaskListFragment;
 import com.example.visualphysics10.placeholder.PlaceholderContent;
 import com.example.visualphysics10.ui.MainFlag;
+import com.example.visualphysics10.ui.lab.LabFragmentList;
 import com.getkeepsafe.taptargetview.TapTarget;
 import com.getkeepsafe.taptargetview.TapTargetView;
 import com.google.android.material.navigation.NavigationView;
@@ -123,7 +121,7 @@ public class ItemFragment extends Fragment implements RecyclerViewAdapter.OnLess
                     @Override
                     public void onTargetClick(TapTargetView view) {
                         super.onTargetClick(view);
-                        onLessonClick(0);
+                        startEducFrag();
                     }
                 }
         );
@@ -143,7 +141,6 @@ public class ItemFragment extends Fragment implements RecyclerViewAdapter.OnLess
                         .setCustomAnimations(R.anim.enter_left_to_right, R.anim.exit_left_to_right)
                         .replace(R.id.container, selectDrawerItem(menu))
                         .addToBackStack(null)
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
                         .commit();
                 MainFlag.setNotLesson(true);
                 return true;
@@ -169,7 +166,6 @@ public class ItemFragment extends Fragment implements RecyclerViewAdapter.OnLess
                 if (lessonData.size() != 0) {
                     String username = lessonData.get(lessonData.size() - 1).name;
                     headerName.setText(username);
-                    Log.d("this flag is...", " " +lessonData.get(lessonData.size()-1).education);
                     settingsFragment1.setStr(username);
                 }
             }
@@ -181,8 +177,17 @@ public class ItemFragment extends Fragment implements RecyclerViewAdapter.OnLess
     private Fragment selectDrawerItem(MenuItem menu) {
         Fragment fragment;
         switch (menu.getItemId()) {
+            case R.id.lecture:
+                fragment = new FragmentLecture();
+                break;
             case R.id.task:
                 fragment = new TaskListFragment();
+                break;
+            case R.id.lab:
+                fragment = new LabFragmentList();
+                break;
+            case R.id.progress:
+                fragment = new MyProgressFragment();
                 break;
             case R.id.settings:
                 fragment = new SettingsFragment1();
@@ -219,9 +224,17 @@ public class ItemFragment extends Fragment implements RecyclerViewAdapter.OnLess
         requireActivity().getSupportFragmentManager()
                 .beginTransaction()
                 .setCustomAnimations(R.anim.enter_left_to_right, R.anim.exit_left_to_right)
-                .replace(R.id.container, Objects.requireNonNull(selectFragment(position)))
+                .replace(R.id.container, new LessonFragment(position))
                 .addToBackStack(null)
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .commit();
+    }
+
+    private void startEducFrag(){
+        requireActivity().getSupportFragmentManager()
+                .beginTransaction()
+                .setCustomAnimations(R.anim.enter_left_to_right, R.anim.exit_left_to_right)
+                .replace(R.id.container, new LessonEducFrag())
+                .addToBackStack(null)
                 .commit();
     }
 
@@ -229,7 +242,7 @@ public class ItemFragment extends Fragment implements RecyclerViewAdapter.OnLess
     private Fragment selectFragment(int position) {
         switch (position) {
             case 0:
-                return new L1Fragment();
+                return new LessonFragment(position);
             case 1:
                 return new L2Fragment();
             case 2:
@@ -239,7 +252,7 @@ public class ItemFragment extends Fragment implements RecyclerViewAdapter.OnLess
             case 4:
                 return new L5Fragment();
             default:
-                return new Fragment();
+                return new LessonEducFrag();
         }
     }
 

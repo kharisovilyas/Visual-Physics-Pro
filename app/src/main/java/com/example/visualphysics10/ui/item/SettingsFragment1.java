@@ -1,6 +1,4 @@
-package com.example.visualphysics10.itemUi;
-
-import static androidx.fragment.app.FragmentManager.TAG;
+package com.example.visualphysics10.ui.item;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -11,7 +9,6 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -20,7 +17,6 @@ import com.example.visualphysics10.R;
 import com.example.visualphysics10.database.LessonData;
 import com.example.visualphysics10.database.LessonViewModel;
 import com.example.visualphysics10.databinding.FragmentSettingsBinding;
-import com.example.visualphysics10.ui.AboutUs;
 
 import java.util.Objects;
 
@@ -46,7 +42,6 @@ public class SettingsFragment1 extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Log.d("TAG", "h",new Throwable(string));
         binding.editProfileText.setText(nameHint);
 
         binding.editProfile.setOnClickListener(v -> {

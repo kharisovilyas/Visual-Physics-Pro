@@ -49,6 +49,8 @@
     <string name="menu_1"><font size="18">Лекции</font></string>
     <string name="menu_2"><font size="18">Задачи</font></string>
     <string name="menu_3"><font size="18">Настройки</font></string>
+    <string name="menu_5"><font size="18">Мой прогресс</font></string>
+    <string name="menu_6"><font size="18">Лабораторные</font></string>
     <string name="menu_4"><font color='red' size="18">Выйти</font></string>
     <string name="input_speed_title">Скорость</string>
     <string name="input_radius_title">Радиус</string>
@@ -171,7 +173,7 @@
 
     <!-- Preference Titles -->
     <string name="settings_0"><font color='#38A6FF' size='20'>Основные настройки</font></string>
-    <string name="settings_1"><font color='black'>Звуки столкновений в уроках</font></string>
+    <string name="settings_1"><font color='black'>Звуки в уроках</font></string>
     <string name="settings_2"><font color='black'>Список заимствований</font></string>
     <string name="settings_3"><font color='black'>О приложении</font></string>
     <string name="settings_4"><font color='red'>Выйти из профиля</font></string>
@@ -193,10 +195,14 @@
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
 
 
-
     <!-- AlertDialogs -->
     <string name="title_1"><font color='black'>Выход</font></string>
     <string name="message_1"><font color='black'>Вы уверены, что хотите завершить урок?</font></string>
     <string name="message_2"><font color='black'>Вы уверены, что хотите выйти из приложения?</font></string>
+    <string name="video1">1OkRaUmRMsQ</string>
+    <string name="video2">CGDrHzP-qnA</string>
+    <string name="video3">ygDsGszS6w8</string>
+    <string name="video4">Qrpl6HNdE4Q</string>
+    <string name="video5">cHWJr0PufIg</string>
 
 </resources>
