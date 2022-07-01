@@ -20,9 +20,7 @@ import com.example.visualphysics10.MainActivity;
 import com.example.visualphysics10.R;
 import com.example.visualphysics10.adapter.RecyclerViewAdapter;
 import com.example.visualphysics10.databinding.FragmentLecturesBinding;
-import com.example.visualphysics10.placeholder2.PlaceHolderContent2;
-import com.example.visualphysics10.placeholder3.PlaceHolderContent3;
-import com.example.visualphysics10.ui.test.FragmentTest;
+import com.example.visualphysics10.ph_lectures.PlaceHolderContent3;
 
 import java.util.Objects;
 
@@ -75,7 +73,7 @@ public class LecturesFragList extends Fragment implements RecyclerViewAdapter.On
         requireActivity().getSupportFragmentManager()
                 .beginTransaction()
                 .setCustomAnimations(R.anim.enter_left_to_right, R.anim.exit_left_to_right)
-                .replace(R.id.container, new FragmentTest(position))
+                .replace(R.id.container, new FragmentInfo(position))
                 .addToBackStack(null)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .commit();

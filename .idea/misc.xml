@@ -18,19 +18,30 @@
         <entry key="..\:/Users/admin/AndroidStudioProjects/VisualPhysicsPro-master/app/src/main/res/drawable/next.xml" value="0.3828125" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/VisualPhysicsPro-master/app/src/main/res/drawable/school.xml" value="0.3828125" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/VisualPhysicsPro-master/app/src/main/res/layout/about_us.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/VisualPhysicsPro-master/app/src/main/res/layout/activity_login.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/VisualPhysicsPro-master/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/VisualPhysicsPro-master/app/src/main/res/layout/activity_registration.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/VisualPhysicsPro-master/app/src/main/res/layout/authors_list.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/VisualPhysicsPro-master/app/src/main/res/layout/contact_dialog.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/VisualPhysicsPro-master/app/src/main/res/layout/end_education_dialog.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/VisualPhysicsPro-master/app/src/main/res/layout/fragment_info.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/VisualPhysicsPro-master/app/src/main/res/layout/fragment_item.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/VisualPhysicsPro-master/app/src/main/res/layout/fragment_itemLab.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/VisualPhysicsPro-master/app/src/main/res/layout/fragment_item_lab.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/VisualPhysicsPro-master/app/src/main/res/layout/fragment_item_lec.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/VisualPhysicsPro-master/app/src/main/res/layout/fragment_item_list.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/VisualPhysicsPro-master/app/src/main/res/layout/fragment_lab_list.xml" value="0.27980922098569155" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/VisualPhysicsPro-master/app/src/main/res/layout/fragment_lecture.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/VisualPhysicsPro-master/app/src/main/res/layout/fragment_lectures.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/VisualPhysicsPro-master/app/src/main/res/layout/fragment_lesson.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/VisualPhysicsPro-master/app/src/main/res/layout/fragment_login.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/VisualPhysicsPro-master/app/src/main/res/layout/fragment_my_progress.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/VisualPhysicsPro-master/app/src/main/res/layout/fragment_registration.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/VisualPhysicsPro-master/app/src/main/res/layout/fragment_settings.xml" value="0.1" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/VisualPhysicsPro-master/app/src/main/res/layout/fragment_task_list.xml" value="0.32382704691812325" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/VisualPhysicsPro-master/app/src/main/res/layout/fragment_test.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/VisualPhysicsPro-master/app/src/main/res/layout/fragment_test2.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/VisualPhysicsPro-master/app/src/main/res/layout/fullscreen_dialog.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/VisualPhysicsPro-master/app/src/main/res/layout/item_lab.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/VisualPhysicsPro-master/app/src/main/res/layout/l1_fragment.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/VisualPhysicsPro-master/app/src/main/res/layout/lesson_fragment.xml" value="0.36666666666666664" />

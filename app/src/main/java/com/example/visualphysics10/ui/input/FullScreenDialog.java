@@ -95,7 +95,7 @@ public class FullScreenDialog extends DialogFragment {
         TextInputLayout inputForceLay = binding.inputForceLay;
         TextInputLayout inputMassLay = binding.inputMassLay;
         TextInputLayout inputAngleLay = binding.inputAngleLay;
-        switch (MainFlag.getPosition()) {
+        switch (position) {
             case 0:
                 break;
             case 1:
@@ -135,7 +135,7 @@ public class FullScreenDialog extends DialogFragment {
     //save to db data from EditText
     private void inputData() {
         PhysicsData.setSpeed(toDouble(input_speed));
-        switch (MainFlag.getPosition()) {
+        switch (position) {
             case 0:
                 PhysicsData.setAcc(toDouble(input_acc));
                 break;

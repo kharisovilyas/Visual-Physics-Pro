@@ -11,14 +11,14 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 //TODO: Database of our application
 // the logic of its work is implemented in the entities that are in this package
 // in this class we create a database using the Room methods
-@Database(entities = {LessonData.class}, version = 7, exportSchema = false)
+@Database(entities = {LessonData.class}, version = 8, exportSchema = false)
 public abstract class AppDataBase extends RoomDatabase {
     public abstract DataDao dataDao();
 
     private static AppDataBase instance;
 
     //created new AsyncTask using .CallBack methods
-    private static RoomDatabase.Callback roomCallback = new RoomDatabase.Callback(){
+    private static final RoomDatabase.Callback roomCallback = new RoomDatabase.Callback(){
         @Override
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
             super.onCreate(db);

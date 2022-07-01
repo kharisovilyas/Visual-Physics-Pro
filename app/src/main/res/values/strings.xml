@@ -8,6 +8,7 @@
     <string name="title_info_5">Немного об импульсе</string>
     <string name="test">Задачи</string>
     <string name="lecture">Лекции</string>
+    <string name="lab">Лабораторные работы</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="afterSaveData">Найденные данные</string>
     <string name="output_time">Прошедшее время</string>
@@ -19,8 +20,6 @@
     <string name="titleL4">Под углом к горизонту</string>
     <string name="titleL5">Импульс тел</string>
     <string name="titleL6">Сила Трения</string>
-    <string name="titleL7">Колебания</string>
-    <string name="titleL8">Приломление света</string>
     <string name="buttonLogin">Зарегистрироваться</string>
     <string name="title_activity_test">testActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -65,6 +64,10 @@
     <string name="input_height">Введите значение в [м]</string>
     <string name="answer">Ответ</string>
     <string name="answerHelper">Введите ответ и нажмите сохранить</string>
+    <!-- FOR LOGIN -->
+    <string name="input_email">Введите свою почту</string>
+    <string name="input_password">Введите пароль</string>
+    <string name="input_emailTeacher">Введите почту своего учителя</string>
     <!-- -->
     <!-- String res for FragmentTest - task -->
     <!-- -->
@@ -202,5 +205,16 @@
     <string name="video3">ygDsGszS6w8</string>
     <string name="video4">Qrpl6HNdE4Q</string>
     <string name="video5">cHWJr0PufIg</string>
-
+    <string name="enter_login">Войти</string>
+    <string name="registration">Регистрация</string>
+    <string name="reg">Зарегистрироваться</string>
+    <string name="nameInput">Введите свое имя</string>
+    <string name="hintSnack">Вы ничего не ввели</string>
+    <string name="hintSnack2">Вы ввели неверный пароль</string>
+    <string name="hintSnack4">Проверьте введенные данные</string>
+    <string name="regSnack3">Восстановить пароль</string>
+    <string name="contactForMe">Для восстановления пароля напишите разработчику, он отправит Вам письмо с инструкцией по восстановлению пароля</string>
+    <string name="link"><a href="mailto:relanius.ilyas@gmail.com?subject=Восстановление%20пароля&amp;body=Почта%20указанная%20при%20регистрации:%0AПожалуйста%20восстановите%20мой%20пароль">relanius.ilyas@gmail.com</a></string>
+    <string name="login_title">Войдите в аккаунт</string>
+    <string name="reg_title">Регистрация пользователя</string>
 </resources>

@@ -20,7 +20,7 @@ import com.example.visualphysics10.MainActivity;
 import com.example.visualphysics10.R;
 import com.example.visualphysics10.adapter.RecyclerViewAdapter;
 import com.example.visualphysics10.databinding.FragmentTaskListBinding;
-import com.example.visualphysics10.placeholder2.PlaceHolderContent2;
+import com.example.visualphysics10.ph_task.PlaceHolderContent2;
 
 import java.util.Objects;
 

@@ -72,7 +72,6 @@ public class LessonEducFrag extends Fragment {
         count = 0;
         gameView = binding.physicsView;
         PhysicsModel.L1 = true;
-        MainFlag.setThreadStop(false);
         // in this method we wait for SurfaceView until she gets her size. And let's start!
         waitingForSV();
         //sound

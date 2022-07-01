@@ -11,7 +11,7 @@ import androidx.preference.SwitchPreferenceCompat;
 
 import com.example.visualphysics10.R;
 import com.example.visualphysics10.ui.AboutUs;
-import com.example.visualphysics10.ui.AuthorsInfo;
+import com.example.visualphysics10.ui.AuthorsInfoDialog;
 
 import java.util.Objects;
 
@@ -68,7 +68,7 @@ public class SettingsFragment2 extends PreferenceFragmentCompat {
     }
 
     private void onSelectedAuthorsList() {
-        DialogFragment dialogFragment = AuthorsInfo.newInstance();
+        DialogFragment dialogFragment = AuthorsInfoDialog.newInstance();
         dialogFragment.show(Objects.requireNonNull(getActivity()).getSupportFragmentManager(), "about!");
     }
 }

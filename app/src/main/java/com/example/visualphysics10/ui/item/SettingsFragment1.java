@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.visualphysics10.MainActivity;
@@ -18,6 +19,7 @@ import com.example.visualphysics10.database.LessonData;
 import com.example.visualphysics10.database.LessonViewModel;
 import com.example.visualphysics10.databinding.FragmentSettingsBinding;
 
+import java.util.List;
 import java.util.Objects;
 
 public class SettingsFragment1 extends Fragment {
@@ -78,6 +80,12 @@ public class SettingsFragment1 extends Fragment {
         //
         viewModel = ViewModelProviders.of(requireActivity()).get(LessonViewModel.class);
         lessonDataList.name = string;
+        viewModel.getLessonLiveData().observe(this, new Observer<List<LessonData>>() {
+            @Override
+            public void onChanged(List<LessonData> lessonData) {
+                lessonData.add(lessonDataList);
+            }
+        });
         viewModel.insert(lessonDataList);
     }
 

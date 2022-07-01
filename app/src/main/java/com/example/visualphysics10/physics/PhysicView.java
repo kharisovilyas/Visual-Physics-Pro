@@ -26,11 +26,9 @@ public class PhysicView extends SurfaceView implements SurfaceHolder.Callback {
     private final LinkedList<PhysicsModel> sprites = new LinkedList<>();
     private Thread drawThread;
     private boolean drawOk;
-    private int position;
 
     public PhysicView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        this.position = MainFlag.getPosition();
         getHolder().addCallback(this);
         initSprites();
     }
@@ -55,14 +53,12 @@ public class PhysicView extends SurfaceView implements SurfaceHolder.Callback {
         synchronized (sprites) {
             if (position == 3) {
                 sprites.add(new PhysicsModel(getContext(), 0, PhysicsData.getY0() / 2, 0, 0, 0));
-                Log.d("this xyi", " " + position);
             }
             else if (position == 4) {
                 sprites.add(new PhysicsModel(getContext(), 50, PhysicsData.getY0() - PhysicsModel.l - 5, 0, 0, 0));
                 sprites.add(new PhysicsModel(getContext(), PhysicsData.getX0() - PhysicsModel.l - 50, PhysicsData.getY0() - PhysicsModel.h - 5, 0, 0, 1));
             } else {
                 sprites.add(new PhysicsModel(getContext(), 0, PhysicsData.getY0() - PhysicsModel.l - 5, 0, 0, 0));
-                Log.d("thisssssssss xyi", " " + position);
             }
         }
     }

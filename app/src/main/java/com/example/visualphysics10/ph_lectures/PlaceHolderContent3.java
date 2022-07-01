@@ -1,55 +1,52 @@
-package com.example.visualphysics10.placeholder2;
+package com.example.visualphysics10.ph_lectures;
 
 import androidx.annotation.NonNull;
 
 import com.example.visualphysics10.R;
-import com.example.visualphysics10.physics.MathPart;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class PlaceHolderContent2 {
+public class PlaceHolderContent3 {
+    public static final List<PlaceHolderContent3.PlaceHolderItem3> ITEMS = new ArrayList<PlaceHolderContent3.PlaceHolderItem3>();
 
-    public static final List<PlaceHolderContent2.PlaceHolderItem2> ITEMS = new ArrayList<PlaceHolderContent2.PlaceHolderItem2>();
-
-    public static final Map<String, PlaceHolderContent2.PlaceHolderItem2> ITEM_MAP = new HashMap<String, PlaceHolderContent2.PlaceHolderItem2>();
+    public static final Map<String, PlaceHolderContent3.PlaceHolderItem3> ITEM_MAP = new HashMap<String, PlaceHolderContent3.PlaceHolderItem3>();
 
     private static final int COUNT = 5;
 
     static {
         for (int i = 1; i <= COUNT; i++) {
-            addItem(createPlaceHolderItem2(i));
+            addItem(createPlaceHolderItem3(i));
         }
     }
 
-    private static void addItem(PlaceHolderContent2.PlaceHolderItem2 item) {
+    private static void addItem(PlaceHolderContent3.PlaceHolderItem3 item) {
         ITEMS.add(item);
         ITEM_MAP.put(item.id, item);
     }
 
-    private static PlaceHolderContent2.PlaceHolderItem2 createPlaceHolderItem2(int position) {
-        return new PlaceHolderContent2.PlaceHolderItem2(String.valueOf(position), switchLesson(position), switchImageView(position));
+    private static PlaceHolderContent3.PlaceHolderItem3 createPlaceHolderItem3(int position) {
+        return new PlaceHolderContent3.PlaceHolderItem3(String.valueOf(position), switchLesson(position), switchImageView(position));
     }
 
 
     private static String switchLesson(int position) {
         switch (position){
             case 1:
-                return "Задачи на ускорение";
+                return "Ускорение";
             case 2:
-                return "Задачи на Движение по Окружности";
+                return "Движение по Окружности";
             case 3:
-                return "Задачи на II Закон Ньютона";
+                return "II Закон Ньютона";
             case 4:
-                return "Задачи на Движение под углом";
+                return "Движение под углом";
             case 5:
-                return "Задачи на Закон Сохранения Импульса";
+                return "Закон Сохранения Импульса";
             default: return "";
         }
     }
-
 
 
     static int switchImageView(int position) {
@@ -63,13 +60,13 @@ public class PlaceHolderContent2 {
         }
     }
 
-    public static class PlaceHolderItem2 {
+    public static class PlaceHolderItem3 {
         public final String id;
         public final String title;
         public final int imageView;
 
 
-        public PlaceHolderItem2(String id, String content, int imageView) {
+        public PlaceHolderItem3(String id, String content, int imageView) {
             this.id = id;
             this.title = content;
             this.imageView = imageView;
@@ -83,3 +80,4 @@ public class PlaceHolderContent2 {
     }
 
 }
+

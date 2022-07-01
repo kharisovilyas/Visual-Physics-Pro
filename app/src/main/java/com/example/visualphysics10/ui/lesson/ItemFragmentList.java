@@ -30,13 +30,13 @@ import com.example.visualphysics10.adapter.RecyclerViewAdapter;
 import com.example.visualphysics10.database.LessonData;
 import com.example.visualphysics10.database.LessonViewModel;
 import com.example.visualphysics10.databinding.FragmentItemListBinding;
+import com.example.visualphysics10.ph_lesson.PlaceholderContent;
+import com.example.visualphysics10.ui.MainFlag;
 import com.example.visualphysics10.ui.item.MyProgressFragment;
 import com.example.visualphysics10.ui.item.SettingsFragment1;
+import com.example.visualphysics10.ui.lab.LabFragmentList;
 import com.example.visualphysics10.ui.lectures.LecturesFragList;
 import com.example.visualphysics10.ui.test.TaskListFragment;
-import com.example.visualphysics10.placeholder.PlaceholderContent;
-import com.example.visualphysics10.ui.MainFlag;
-import com.example.visualphysics10.ui.lab.LabFragmentList;
 import com.getkeepsafe.taptargetview.TapTarget;
 import com.getkeepsafe.taptargetview.TapTargetView;
 import com.google.android.material.navigation.NavigationView;
@@ -89,7 +89,7 @@ public class ItemFragmentList extends Fragment implements RecyclerViewAdapter.On
         listenerNav();
         editProfile();
         education = context.getSharedPreferences(EDUCATION_PREFERENCES, Context.MODE_PRIVATE);
-        if(education.contains(EDUCATION_PREFERENCES)){
+        if (education.contains(EDUCATION_PREFERENCES)) {
             educationEnd = education.getBoolean(EDUCATION_PREFERENCES, false);
         }
         if (!educationEnd) {
@@ -226,9 +226,10 @@ public class ItemFragmentList extends Fragment implements RecyclerViewAdapter.On
                 .replace(R.id.container, new LessonFragment(position))
                 .addToBackStack(null)
                 .commit();
+        MainFlag.setNotLesson(false);
     }
 
-    private void startEducFrag(){
+    private void startEducFrag() {
         requireActivity().getSupportFragmentManager()
                 .beginTransaction()
                 .setCustomAnimations(R.anim.enter_left_to_right, R.anim.exit_left_to_right)

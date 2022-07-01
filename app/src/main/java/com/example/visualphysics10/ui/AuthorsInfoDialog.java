@@ -18,10 +18,10 @@ import com.google.android.material.appbar.MaterialToolbar;
 
 import java.util.Objects;
 
-public class AuthorsInfo extends DialogFragment {
+public class AuthorsInfoDialog extends DialogFragment {
     private AuthorsListBinding binding;
     public static DialogFragment newInstance() {
-        return new AuthorsInfo();
+        return new AuthorsInfoDialog();
     }
     @Override
     public void onStart() {

@@ -1,30 +1,35 @@
 package com.example.visualphysics10.ui;
 
-import static com.example.visualphysics10.R.color.white;
-
+import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
-import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.visualphysics10.MainActivity;
 import com.example.visualphysics10.R;
+import com.example.visualphysics10.databinding.AuthorsListBinding;
+import com.example.visualphysics10.databinding.ContactDialogBinding;
 import com.example.visualphysics10.databinding.EndEducationDialogBinding;
 import com.google.android.material.appbar.MaterialToolbar;
 
 import java.util.Objects;
 
-public class EndEducationDialog extends DialogFragment {
-    private EndEducationDialogBinding binding;
+public class ContactDialog extends DialogFragment{
+    private ContactDialogBinding binding;
     public static DialogFragment newInstance() {
-        return new EndEducationDialog();
+        return new ContactDialog();
     }
 
     @Override
@@ -46,28 +51,17 @@ public class EndEducationDialog extends DialogFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = EndEducationDialogBinding.inflate(inflater, container, false);
+        binding = ContactDialogBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        addToolbar();
+        binding.text.setText(getString(R.string.contactForMe));
+        //переход по гиперссылке прямо к письму, чтобы восстановить свой пароль
+        binding.email.setMovementMethod(LinkMovementMethod.getInstance());
     }
 
-    private void addToolbar() {
-        MaterialToolbar toolbar = binding.toolbar;
-        ((MainActivity) Objects.requireNonNull(getActivity())).setSupportActionBar(toolbar);
-        toolbar.setTitle("");
-        toolbar.setNavigationIcon(R.drawable.close);
-        toolbar.setNavigationIconTint(Color.WHITE);
-        toolbar.setTitle("Обучение");
-        toolbar.setTitleTextColor(Color.WHITE);
-
-        toolbar.setNavigationOnClickListener(v -> {
-            if(MainFlag.notLesson) getActivity().onBackPressed();
-            dismiss();
-        });
-    }
 }

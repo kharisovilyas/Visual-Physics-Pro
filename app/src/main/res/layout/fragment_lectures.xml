@@ -43,7 +43,6 @@
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/listTask"
-            android:name="com.example.visualphysics10.ItemFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layoutManager="LinearLayoutManager"

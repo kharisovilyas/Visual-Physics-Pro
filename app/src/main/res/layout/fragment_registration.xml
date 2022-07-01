@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:theme="@style/Toolbar" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/container"
+        app:layout_constraintVertical_bias="0.3">
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInput"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/primary"
+            android:hint="@string/nameInput"
+            android:padding="20dp"
+            android:textColorHint="@color/primary"
+            app:boxStrokeColor="@color/primary"
+            app:counterTextColor="@color/black"
+            app:endIconMode="clear_text"
+            app:endIconTint="@color/icon_color"
+            app:helperTextTextColor="@color/color_accent"
+            app:hintTextColor="@color/primary"
+            app:placeholderTextColor="@color/primary"
+            app:startIconDrawable="@drawable/ic_mr_button_connected_00_dark"
+            app:startIconTint="@color/icon_color">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/inputName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:maxLines="1"
+                android:textColor="@color/black" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/primary"
+            android:hint="@string/input_email"
+            android:padding="20dp"
+            android:textColorHint="@color/primary"
+            app:boxStrokeColor="@color/primary"
+            app:counterTextColor="@color/black"
+            app:endIconMode="clear_text"
+            app:endIconTint="@color/icon_color"
+            app:helperTextTextColor="@color/color_accent"
+            app:hintTextColor="@color/primary"
+            app:placeholderTextColor="@color/primary"
+            app:startIconDrawable="@drawable/email"
+            app:startIconTint="@color/icon_color">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/inputEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:maxLines="1"
+                android:textColor="@color/black" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/inputLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/primary"
+            android:hint="@string/input_password"
+            android:padding="20dp"
+            android:textColorHint="@color/primary"
+            app:boxStrokeColor="@color/primary"
+            app:counterTextColor="@color/black"
+            app:endIconMode="clear_text"
+            app:endIconTint="@color/icon_color"
+            app:helperTextTextColor="@color/color_accent"
+            app:hintTextColor="@color/primary"
+            app:placeholderTextColor="@color/primary"
+            app:startIconDrawable="@drawable/password"
+            app:startIconTint="@color/icon_color">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/inputPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:textColor="@color/black" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout3"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/primary"
+            android:hint="@string/input_emailTeacher"
+            android:padding="20dp"
+            android:textColorHint="@color/primary"
+            app:boxStrokeColor="@color/primary"
+            app:counterTextColor="@color/black"
+            app:endIconMode="clear_text"
+            app:endIconTint="@color/icon_color"
+            app:helperTextTextColor="@color/color_accent"
+            app:hintTextColor="@color/primary"
+            app:placeholderTextColor="@color/primary"
+            app:startIconDrawable="@drawable/school"
+            app:startIconTint="@color/icon_color">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/inputEmailTeacher"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:maxLines="1"
+                android:textColor="@color/black" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/saveReg"
+            android:layout_width="wrap_content"
+            android:layout_margin="12dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="12dp"
+            android:text="@string/reg" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

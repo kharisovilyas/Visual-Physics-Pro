@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -18,9 +19,13 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 
 import com.example.visualphysics10.MainActivity;
 import com.example.visualphysics10.R;
+import com.example.visualphysics10.database.LessonData;
+import com.example.visualphysics10.database.LessonViewModel;
 import com.example.visualphysics10.database.PhysicsData;
 import com.example.visualphysics10.databinding.LessonFragmentBinding;
 import com.example.visualphysics10.objects.PhysicsModel;
@@ -33,6 +38,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.textview.MaterialTextView;
 
+import java.util.List;
 import java.util.Objects;
 
 //

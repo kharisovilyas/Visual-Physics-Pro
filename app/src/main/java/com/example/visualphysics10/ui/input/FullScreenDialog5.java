@@ -2,6 +2,7 @@ package com.example.visualphysics10.ui.input;
 
 import android.app.Dialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -80,9 +81,6 @@ public class FullScreenDialog5 extends DialogFragment {
         input_speed2 = binding.inputSpeed2;
         input_mass2 = binding.inputMass2;
         typeImpulse = binding.typeImpulse;
-        typeImpulse.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            type = isChecked;
-        });
         FloatingActionButton saveInput = binding.save;
         saveInput.setOnClickListener(v -> {
             try {
@@ -100,23 +98,15 @@ public class FullScreenDialog5 extends DialogFragment {
     }
 
     private void saveData() {
-        viewModel = ViewModelProviders.of(requireActivity()).get(LessonViewModel.class);
-        viewModel.getLessonLiveData().observe(this, new Observer<List<LessonData>>() {
-            @Override
-            public void onChanged(List<LessonData> lessonData) {
-                inputData();
-                lessonData.set(0, lessonDataList);
-            }
+        PhysicsData.setSpeed(toDouble(input_speed1));
+        PhysicsData.setMass1(toDouble(input_mass1));
+        PhysicsData.setSpeed2(toDouble(input_speed2));
+        PhysicsData.setMass2(toDouble(input_mass2));
+        typeImpulse.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            PhysicsData.setElasticImpulse(!isChecked);
         });
     }
 
-    private void inputData() {
-        lessonDataList.speed = toDouble(input_speed1);
-        lessonDataList.mass1 = toDouble(input_mass1);
-        lessonDataList.speed2 = toDouble(input_speed2);
-        lessonDataList.mass2 = toDouble(input_mass2);
-        lessonDataList.elasticImpulse = !type;
-    }
 
     private double toDouble(TextInputEditText input) {
         return Double.parseDouble(String.valueOf(input.getText()));

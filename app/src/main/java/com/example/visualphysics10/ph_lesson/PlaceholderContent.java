@@ -1,4 +1,4 @@
-package com.example.visualphysics10.placeholder;
+package com.example.visualphysics10.ph_lesson;
 
 import androidx.annotation.NonNull;
 
