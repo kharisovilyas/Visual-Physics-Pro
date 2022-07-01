@@ -102,11 +102,13 @@ public class RegistrationFragment extends Fragment {
         String name = String.valueOf(binding.inputName.getText());
         String email = String.valueOf(binding.inputEmail.getText());
         String emailTeacher = String.valueOf(binding.inputEmailTeacher.getText());
+        String myClass = String.valueOf(binding.inputYouClass.getText());
         User newUser = new User(id, name, email, emailTeacher);
         //не работает
         mDatabase.push().setValue(newUser);
         lessonDataList.name = name;
         lessonDataList.emailTeacher = emailTeacher;
+        lessonDataList.myClass = myClass;
         viewModel = ViewModelProviders.of(requireActivity()).get(LessonViewModel.class);
         viewModel.getLessonLiveData().observe(this, new Observer<List<LessonData>>() {
             @Override
@@ -114,10 +116,11 @@ public class RegistrationFragment extends Fragment {
                 lessonData.add(lessonDataList);
             }
         });
+        viewModel.insert(lessonDataList);
     }
     private void addToolbar() {
         Toolbar toolbar = binding.toolbar;
-        ((MainActivity) requireActivity()).setSupportActionBar(toolbar);
+        ((MainActivity)requireActivity()).setSupportActionBar(toolbar);
         toolbar.setTitle(R.string.reg_title);
     }
 

@@ -56,7 +56,6 @@ public class SettingsFragment2 extends PreferenceFragmentCompat {
             @Override
             public boolean onPreferenceClick(Preference preference) {
                 onSelectedAboutUS();
-                Log.d("TAG", "onPreferenceClick: ");
                 return false;
             }
         });

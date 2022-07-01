@@ -17,7 +17,7 @@ import com.example.visualphysics10.engine.PhysicsSprite;
 import com.example.visualphysics10.engine.Sprite;
 import com.example.visualphysics10.engine.Vector2;
 import com.example.visualphysics10.objects.PhysicsModel;
-import com.example.visualphysics10.ui.MainFlag;
+import com.example.visualphysics10.ui.lesson.GraphFragment;
 import com.example.visualphysics10.ui.lesson.LessonFragment;
 
 import java.util.LinkedList;
@@ -88,7 +88,8 @@ public class PhysicView extends SurfaceView implements SurfaceHolder.Callback {
         }
         PhysicsModel.L2start = false;
         PhysicsModel.onEarth = false;
-        PhysicsModel.onBoard = false;
+        PhysicsModel.onBoardRight = false;
+        PhysicsModel.onBoardLeft = false;
         PhysicsModel.isTouchedI = false;
         PhysicsModel.isL2Ended = true;
         PhysicsModel.isTouchedNEP = false;

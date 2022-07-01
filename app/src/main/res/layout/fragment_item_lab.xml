@@ -48,11 +48,12 @@
             tools:ignore="NestedWeights" />
 
         <Button
+            android:id="@+id/send"
             android:elevation="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:text="Отправить учителю"/>
+            android:text="@string/sendTeacher"/>
     </LinearLayout>
 
 

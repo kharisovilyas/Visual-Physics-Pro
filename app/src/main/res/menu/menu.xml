@@ -17,7 +17,7 @@
             android:title="@string/menu_6" />
         <item
             android:id="@+id/progress"
-            android:icon="@drawable/check_new"
+            android:icon="@drawable/acc"
             android:title="@string/menu_5" />
         <item
             android:id="@+id/settings"

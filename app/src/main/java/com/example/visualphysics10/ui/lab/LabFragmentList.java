@@ -76,7 +76,7 @@ public class LabFragmentList extends Fragment implements RecyclerViewAdapter.OnL
         requireActivity().getSupportFragmentManager()
                 .beginTransaction()
                 .setCustomAnimations(R.anim.enter_left_to_right, R.anim.exit_left_to_right)
-                .replace(R.id.container, new FragmentInfo(position))
+                .replace(R.id.container, new LabFragment(position))
                 .addToBackStack(null)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .commit();

@@ -13,8 +13,8 @@
 
         <FrameLayout
             android:id="@+id/outputHere"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             app:layout_constraintEnd_toEndOf="@+id/toolbar"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -48,8 +48,8 @@
             </com.example.visualphysics10.physics.PhysicView>
 
             <ImageView
-                android:layout_width="match_parent"
                 android:id="@+id/land"
+                android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:scaleType="centerCrop"
@@ -106,32 +106,65 @@
                 app:useCompatPadding="true" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/startTest"
+                android:id="@+id/startGraph"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="16dp"
                 android:backgroundTint="@color/white"
                 android:scaleType="center"
-                android:src="@drawable/icon_test"
+                android:src="@drawable/angle_like"
                 app:useCompatPadding="true" />
 
 
         </LinearLayout>
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/info"
+
+
+        <TextView
+            android:id="@+id/vx"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+        <TextView
+            android:id="@+id/vy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/vx" />
+
+        <TextView
+            android:id="@+id/times"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/vy" />
+
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/vectors"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/vectors"
+            android:textColor="@color/black"
+            android:textSize="18sp"
             android:layout_marginEnd="10dp"
-            android:backgroundTint="@color/white"
-            android:scaleType="center"
-            android:src="@drawable/lectures"
-            android:visibility="invisible"
+            android:layout_marginTop="10dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar"
-            app:useCompatPadding="true" />
+            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

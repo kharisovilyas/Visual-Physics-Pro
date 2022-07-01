@@ -19,6 +19,16 @@ public class LessonData {
     public byte[] image;
     @ColumnInfo(name = "emailTeacher")
     public String emailTeacher;
+    @ColumnInfo(name = "myClass")
+    public String myClass;
+    @ColumnInfo(name = "taskL1")
+    public int taskL1;
+    @ColumnInfo(name = "taskL2")
+    public int taskL2;
+    @ColumnInfo(name = "taskL3")
+    public int taskL4;
+    @ColumnInfo(name = "taskL5")
+    public int taskL5;
     @ColumnInfo(name = "progressL1")
     public int progressL1;
     @ColumnInfo(name = "progressL2")

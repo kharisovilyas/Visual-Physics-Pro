@@ -31,12 +31,12 @@ import com.example.visualphysics10.databinding.LessonFragmentBinding;
 import com.example.visualphysics10.objects.PhysicsModel;
 import com.example.visualphysics10.physics.PhysicView;
 import com.example.visualphysics10.ui.EndEducationDialog;
-import com.example.visualphysics10.ui.MainFlag;
 import com.example.visualphysics10.ui.input.FullScreenDialog;
 import com.example.visualphysics10.ui.test.FragmentTest;
 import com.example.visualphysics10.ui.lectures.FragmentInfo;
 import com.getkeepsafe.taptargetview.TapTarget;
 import com.getkeepsafe.taptargetview.TapTargetSequence;
+import com.google.android.material.checkbox.MaterialCheckBox;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.textview.MaterialTextView;
@@ -47,7 +47,7 @@ public class LessonEducFrag extends Fragment {
     private LessonFragmentBinding binding;
     private PhysicView gameView;
     public static boolean isMoving = false;
-    private FloatingActionButton info;
+    private MaterialCheckBox info;
     private FloatingActionButton play;
     private DrawerLayout drawerLayout;
     private NavigationView navigation;
@@ -80,8 +80,8 @@ public class LessonEducFrag extends Fragment {
         play = binding.play;
         FloatingActionButton restart = binding.restart;
         FloatingActionButton startInput = binding.startInput;
-        FloatingActionButton startTest = binding.startTest;
-        info = binding.info;
+        FloatingActionButton startTest = binding.startGraph;
+        info = binding.vectors;
         //double click on this button calls another function - this way we save space in fragment
         getMessage();
         play.setOnClickListener(v -> {
@@ -177,7 +177,7 @@ public class LessonEducFrag extends Fragment {
                         .tintTarget(true)
                         .transparentTarget(true)
                         .targetRadius(100),
-                TapTarget.forView(binding.info,
+                TapTarget.forView(binding.vectors,
                         "Нажмите инфо", "Чтобы получить больше информации, прослушать лекцию")
                         .outerCircleColor(R.color.primary)
                         .outerCircleAlpha(0.96f)
@@ -209,7 +209,7 @@ public class LessonEducFrag extends Fragment {
                         .tintTarget(true)
                         .transparentTarget(true)
                         .targetRadius(100),
-                TapTarget.forView(binding.startTest,
+                TapTarget.forView(binding.startGraph,
                         "Нажмите и пройдите тест", "Чтобы закрепить усвоенный материал")
                         .outerCircleColor(R.color.primary)
                         .outerCircleAlpha(0.96f)

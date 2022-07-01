@@ -32,7 +32,7 @@ import com.example.visualphysics10.database.LessonViewModel;
 import com.example.visualphysics10.databinding.FragmentItemListBinding;
 import com.example.visualphysics10.ph_lesson.PlaceholderContent;
 import com.example.visualphysics10.ui.MainFlag;
-import com.example.visualphysics10.ui.item.MyProgressFragment;
+import com.example.visualphysics10.ui.item.MyProfileFragment;
 import com.example.visualphysics10.ui.item.SettingsFragment1;
 import com.example.visualphysics10.ui.lab.LabFragmentList;
 import com.example.visualphysics10.ui.lectures.LecturesFragList;
@@ -163,7 +163,7 @@ public class ItemFragmentList extends Fragment implements RecyclerViewAdapter.On
                 // and paste into textview
                 //
                 if (lessonData.size() != 0) {
-                    String username = lessonData.get(lessonData.size() - 1).name;
+                    String username = lessonData.get(0).name;
                     headerName.setText(username);
                     settingsFragment1.setStr(username);
                 }
@@ -186,7 +186,7 @@ public class ItemFragmentList extends Fragment implements RecyclerViewAdapter.On
                 fragment = new LabFragmentList();
                 break;
             case R.id.progress:
-                fragment = new MyProgressFragment();
+                fragment = new MyProfileFragment();
                 break;
             case R.id.settings:
                 fragment = new SettingsFragment1();

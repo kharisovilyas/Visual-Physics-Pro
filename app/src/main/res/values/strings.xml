@@ -1,11 +1,14 @@
 <resources>
     <string name="app_name">Visual Physics</string>
+
+    <!-- TITLES -->
     <string name="title_input">Ввод данных</string>
     <string name="title_info_1">Немного об ускорении</string>
     <string name="title_info_2">Движение по окружности</string>
     <string name="title_info_3">Немного о силе</string>
     <string name="title_info_4">О свободном падении</string>
     <string name="title_info_5">Немного об импульсе</string>
+    <string name="title_lab">Лабораторная работа</string>
     <string name="test">Задачи</string>
     <string name="lecture">Лекции</string>
     <string name="lab">Лабораторные работы</string>
@@ -46,7 +49,7 @@
     <string name="menu_1"><font size="18">Лекции</font></string>
     <string name="menu_2"><font size="18">Задачи</font></string>
     <string name="menu_3"><font size="18">Настройки</font></string>
-    <string name="menu_5"><font size="18">Мой прогресс</font></string>
+    <string name="menu_5"><font size="18">Мой профиль</font></string>
     <string name="menu_6"><font size="18">Лабораторные</font></string>
     <string name="menu_4"><font color='red' size="18">Выйти</font></string>
     <string name="input_speed_title">Скорость</string>
@@ -173,7 +176,7 @@
     <string name="title_activity_settings">SettingsActivity</string>
 
     <!-- Preference Titles -->
-    <string name="settings_0"><font color='#38A6FF' size='20'>Основные настройки</font></string>
+    <string name="settings_0"><font color='#38A6FF' size='20'>Настройки</font></string>
     <string name="settings_1"><font color='black'>Звуки в уроках</font></string>
     <string name="settings_2"><font color='black'>Список заимствований</font></string>
     <string name="settings_3"><font color='black'>О приложении</font></string>
@@ -208,7 +211,7 @@
     <string name="enter_login">Войти</string>
     <string name="registration">Регистрация</string>
     <string name="reg">Зарегистрироваться</string>
-    <string name="nameInput">Введите свое имя</string>
+    <string name="nameInput">Введите свое ФИО</string>
     <string name="hintSnack">Вы ничего не ввели</string>
     <string name="hintSnack2">Вы ввели неверный пароль</string>
     <string name="hintSnack4">Проверьте введенные данные</string>
@@ -217,4 +220,13 @@
     <string name="link"><a href="mailto:relanius.ilyas@gmail.com?subject=Восстановление%20пароля&amp;body=Почта%20указанная%20при%20регистрации:%0AПожалуйста%20восстановите%20мой%20пароль">relanius.ilyas@gmail.com</a></string>
     <string name="login_title">Войдите в аккаунт</string>
     <string name="reg_title">Регистрация пользователя</string>
+    <string name="input_class">Введите свой класс</string>
+    <string name="sendTeacher">Отправить учителю</string>
+    <string name="prof1">\"Ваше ФИО: \"</string>
+    <string name="prof2">\"Вы учитесь в \"</string>
+    <string name="prof3">\"Почта учителя: \"</string>
+    <string name="newY">Y-Скорость(м/с):</string>
+    <string name="newTime">Время(с.мс):</string>
+    <string name="newX">X-Скорость(м/с):</string>
+    <string name="vectors">Векторы</string>
 </resources>

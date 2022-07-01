@@ -70,5 +70,6 @@ dependencies {
     implementation 'com.getkeepsafe.taptargetview:taptargetview:1.13.0'
     //Preferences
     implementation 'androidx.preference:preference:1.2.0'
-
+    //Graph View
+    implementation 'com.jjoe64:graphview:4.2.2'
 }

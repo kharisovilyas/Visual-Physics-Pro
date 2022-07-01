@@ -149,8 +149,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             super(binding.getRoot());
             mIdView = binding.title;
             textBody = binding.body;
+            button = binding.send;
             this.onLessonListener = onLessonListener;
-            itemView.setOnClickListener(this);
+            button.setOnClickListener(this);
         }
 
         //position initialization using custom interface and transmits to abstractClass for work with FragmentInfo and FragmentTest

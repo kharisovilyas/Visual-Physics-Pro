@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -19,13 +18,9 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 
 import com.example.visualphysics10.MainActivity;
 import com.example.visualphysics10.R;
-import com.example.visualphysics10.database.LessonData;
-import com.example.visualphysics10.database.LessonViewModel;
 import com.example.visualphysics10.database.PhysicsData;
 import com.example.visualphysics10.databinding.LessonFragmentBinding;
 import com.example.visualphysics10.objects.PhysicsModel;
@@ -38,7 +33,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.textview.MaterialTextView;
 
-import java.util.List;
 import java.util.Objects;
 
 //
@@ -50,13 +44,14 @@ public class LessonFragment extends Fragment {
     public static boolean isMoving2 = false;
     public static boolean isMoving4 = false;
     public static boolean isMoving5 = false;
+    public static boolean vectorsEnabled = false;
     private LessonFragmentBinding binding;
     private PhysicView gameView;
     public static boolean isMoving = false;
-    private FloatingActionButton info;
     private FloatingActionButton play;
     private int count = 0;
     private final int position;
+    private double time = 0;
 
     public LessonFragment(int position) {
         this.position = position;
@@ -84,8 +79,8 @@ public class LessonFragment extends Fragment {
         play = binding.play;
         FloatingActionButton restart = binding.restart;
         FloatingActionButton startInput = binding.startInput;
-        FloatingActionButton startTest = binding.startTest;
-        info = binding.info;
+        FloatingActionButton startGraph = binding.startGraph;
+
         //double click on this button calls another function - this way we save space in fragment
         getMessage();
         play.setOnClickListener(v -> {
@@ -103,16 +98,12 @@ public class LessonFragment extends Fragment {
         startInput.setOnClickListener(v -> {
             createdFullScreenDialog();
         });
-
-        //start testings
-        startTest.setOnClickListener(v -> {
-            startTesting();
+        binding.vectors.setOnClickListener(v -> {
+            vectorsEnabled = binding.vectors.isChecked();
         });
-
-        //when setVisible - we can click in info and watch YouTube Video
-        info.setOnClickListener(v -> {
-            gameView.stopThread();
-            createdFullScreenInfo();
+        //start testings
+        startGraph.setOnClickListener(v -> {
+            startGraph();
         });
     }
 
@@ -198,7 +189,6 @@ public class LessonFragment extends Fragment {
         play.setImageResource(R.drawable.pause_circle);
         startMoving(position);
         if (position == 3) PhysicsModel.beginning = true;
-        info.setVisibility(View.VISIBLE);
         gameView.updateMoving(PhysicsData.getSpeed(), 0, 0);
         if (position == 4) gameView.updateMoving(-PhysicsData.getSpeed2(), 0, 1);
     }
@@ -222,11 +212,11 @@ public class LessonFragment extends Fragment {
     }
 
 
-    private void startTesting() {
+    private void startGraph() {
         requireActivity().getSupportFragmentManager()
                 .beginTransaction()
                 .setCustomAnimations(R.anim.nav_default_enter_anim, R.anim.nav_default_exit_anim)
-                .replace(R.id.container, new FragmentTest(position))
+                .replace(R.id.container, new GraphFragment(position))
                 .addToBackStack(null)
                 .commit();
     }
@@ -267,7 +257,7 @@ public class LessonFragment extends Fragment {
     @SuppressLint("RestrictedApi")
     private void addToolbar() {
         Toolbar toolbar = binding.toolbar;
-        ((MainActivity) Objects.requireNonNull(getActivity())).setSupportActionBar(toolbar);
+        ((MainActivity)requireActivity()).setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.arrow_back);
         toolbar.setTitle(selectTitle(position));
         toolbar.setNavigationOnClickListener(v -> {
@@ -321,6 +311,7 @@ public class LessonFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        vectorsEnabled = false;
     }
 
 }
