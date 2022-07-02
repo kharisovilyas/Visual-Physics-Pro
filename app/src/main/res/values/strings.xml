@@ -153,7 +153,7 @@
     <string name="aboutUs">Visual Physics - это образовательная платформа, в которой пользователь может улучшить свое понимание физики при помощи визуализации или просмотра специально отобранных лекций, а также попрактиковаться в решении задач базового уровня сложности для отработки полученных навыков."</string>
     <string name="aboutCreated">Информация о создателях</string>
     <string name="toEnd"> Поздравляем !</string>
-    <string name="toEndDescription">Вы прошли основное обучение и готовы изучать физику вместе с нами! Чтобы получить больше возможностей, на главной странице нажмите на кнопку ≡.  </string>
+    <string name="toEndDescription">Вы прошли основное обучение и готовы изучать физику вместе с нами! </string>
     <string name="outputSpeed">Вы ввели значение скорости тела - </string>
     <string name="outputSpeed1">Вы ввели значение скорости первого тела - </string>
     <string name="outputSpeed2">Вы ввели значение скорости второго тела - </string>
@@ -222,11 +222,18 @@
     <string name="reg_title">Регистрация пользователя</string>
     <string name="input_class">Введите свой класс</string>
     <string name="sendTeacher">Отправить учителю</string>
-    <string name="prof1">\"Ваше ФИО: \"</string>
-    <string name="prof2">\"Вы учитесь в \"</string>
-    <string name="prof3">\"Почта учителя: \"</string>
+    <string name="prof1">Ваше ФИО:</string>
+    <string name="prof2">Вы учитесь в</string>
+    <string name="prof3">Почта учителя:</string>
     <string name="newY">Y-Скорость(м/с):</string>
     <string name="newTime">Время(с.мс):</string>
     <string name="newX">X-Скорость(м/с):</string>
-    <string name="vectors">Векторы</string>
+    <string name="vectors">Вектора скорости</string>
+    <string name="graph_speedX">График скорости по оси X</string>
+    <string name="graph_speedY">График скорости по оси Y</string>
+    <string name="title_graph">Графики движения</string>
+    <string name="graph_add">постороить</string>
+    <string name="graph_save">сохранить</string>
+    <string name="changes">изменить</string>
+    <string name="child">Ученик</string>
 </resources>

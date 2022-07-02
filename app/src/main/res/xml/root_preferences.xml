@@ -5,10 +5,6 @@
 
     <PreferenceCategory>
 
-        <SwitchPreferenceCompat
-            app:icon="@drawable/sound"
-            app:key="sound"
-            app:title="@string/settings_1" />
         <Preference
             app:icon="@drawable/authors_list"
             app:summary="@string/authors"

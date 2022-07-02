@@ -28,7 +28,6 @@ import com.example.visualphysics10.physics.PhysicView;
 import com.example.visualphysics10.ui.input.FullScreenDialog;
 import com.example.visualphysics10.ui.input.FullScreenDialog5;
 import com.example.visualphysics10.ui.lectures.FragmentInfo;
-import com.example.visualphysics10.ui.test.FragmentTest;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.textview.MaterialTextView;
@@ -51,7 +50,6 @@ public class LessonFragment extends Fragment {
     private FloatingActionButton play;
     private int count = 0;
     private final int position;
-    private double time = 0;
 
     public LessonFragment(int position) {
         this.position = position;
@@ -73,9 +71,6 @@ public class LessonFragment extends Fragment {
         if (position == 1) binding.land.setVisibility(View.GONE);
         // in this method we wait for SurfaceView until she gets her size. And let's start!
         waitingForSV();
-        //sound
-        addMediaPlayer();
-        //
         play = binding.play;
         FloatingActionButton restart = binding.restart;
         FloatingActionButton startInput = binding.startInput;
@@ -102,6 +97,7 @@ public class LessonFragment extends Fragment {
             vectorsEnabled = binding.vectors.isChecked();
         });
         //start testings
+        if (position == 4) startGraph.setVisibility(View.GONE);
         startGraph.setOnClickListener(v -> {
             startGraph();
         });
@@ -128,14 +124,6 @@ public class LessonFragment extends Fragment {
                 break;
 
         }
-    }
-
-    private void addMediaPlayer() {
-        MediaPlayer end = MediaPlayer.create(getContext(), R.raw.end);
-        MediaPlayer rotation = MediaPlayer.create(getContext(), R.raw.rotation);
-        MediaPlayer landing = MediaPlayer.create(getContext(), R.raw.landling);
-        MediaPlayer collision = MediaPlayer.create(getContext(), R.raw.collision);
-        PhysicsModel.addSound(end, rotation, landing, collision);
     }
 
     private void waitingForSV() {
@@ -257,7 +245,7 @@ public class LessonFragment extends Fragment {
     @SuppressLint("RestrictedApi")
     private void addToolbar() {
         Toolbar toolbar = binding.toolbar;
-        ((MainActivity)requireActivity()).setSupportActionBar(toolbar);
+        ((MainActivity) requireActivity()).setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.arrow_back);
         toolbar.setTitle(selectTitle(position));
         toolbar.setNavigationOnClickListener(v -> {

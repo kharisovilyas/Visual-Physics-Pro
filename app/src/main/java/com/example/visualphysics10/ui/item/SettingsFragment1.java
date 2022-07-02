@@ -27,15 +27,6 @@ import java.util.Objects;
 
 public class SettingsFragment1 extends Fragment {
     private FragmentSettingsBinding binding;
-    public static String string="VisPhysUser";
-    private static String nameHint;
-    public static boolean isFABClicked = false;
-    private LessonViewModel viewModel;
-    public LessonData lessonDataList = new LessonData();
-
-    public void setStr(String hint) {
-        nameHint = hint;
-    }
 
     @Nullable
     @Override

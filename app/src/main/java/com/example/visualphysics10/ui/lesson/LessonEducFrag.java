@@ -47,7 +47,7 @@ public class LessonEducFrag extends Fragment {
     private LessonFragmentBinding binding;
     private PhysicView gameView;
     public static boolean isMoving = false;
-    private MaterialCheckBox info;
+    private MaterialCheckBox vectors;
     private FloatingActionButton play;
     private DrawerLayout drawerLayout;
     private NavigationView navigation;
@@ -57,7 +57,8 @@ public class LessonEducFrag extends Fragment {
     private final String EDUCATION_PREFERENCES = "educationEnd";
     private boolean educationEnd;
     private int targetCount = 0;
-    private MediaPlayer end;
+    public static boolean vectorsEnabled = false;
+    public static boolean repeatEdu;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -74,14 +75,11 @@ public class LessonEducFrag extends Fragment {
         PhysicsModel.L1 = true;
         // in this method we wait for SurfaceView until she gets her size. And let's start!
         waitingForSV();
-        //sound
-        addMediaPlayer();
-        //
         play = binding.play;
         FloatingActionButton restart = binding.restart;
         FloatingActionButton startInput = binding.startInput;
-        FloatingActionButton startTest = binding.startGraph;
-        info = binding.vectors;
+        FloatingActionButton startGraph = binding.startGraph;
+        vectors = binding.vectors;
         //double click on this button calls another function - this way we save space in fragment
         getMessage();
         play.setOnClickListener(v -> {
@@ -102,14 +100,13 @@ public class LessonEducFrag extends Fragment {
         });
 
         //start testings
-        startTest.setOnClickListener(v -> {
-            startTesting();
+        startGraph.setOnClickListener(v -> {
+            startGraph();
         });
 
         //when setVisible - we can click in info and watch YouTube Video
-        info.setOnClickListener(v -> {
-            gameView.stopThread();
-            createdFullScreenInfo();
+        vectors.setOnClickListener(v -> {
+            vectorsEnabled = binding.vectors.isChecked();
         });
 
         //TODO: start education, but once...
@@ -120,14 +117,6 @@ public class LessonEducFrag extends Fragment {
         if (!educationEnd) {
             startEducation();
         }
-    }
-
-    private void addMediaPlayer() {
-        MediaPlayer end = MediaPlayer.create(getContext(), R.raw.end);
-        MediaPlayer rotation = MediaPlayer.create(getContext(), R.raw.rotation);
-        MediaPlayer landing = MediaPlayer.create(getContext(), R.raw.landling);
-        MediaPlayer collision = MediaPlayer.create(getContext(), R.raw.collision);
-        PhysicsModel.addSound(end, rotation, landing, collision);
     }
 
     private void waitingForSV() {
@@ -178,23 +167,7 @@ public class LessonEducFrag extends Fragment {
                         .transparentTarget(true)
                         .targetRadius(100),
                 TapTarget.forView(binding.vectors,
-                        "Нажмите инфо", "Чтобы получить больше информации, прослушать лекцию")
-                        .outerCircleColor(R.color.primary)
-                        .outerCircleAlpha(0.96f)
-                        .targetCircleColor(R.color.white)
-                        .titleTextSize(24)
-                        .descriptionTextSize(18)
-                        .titleTextColor(R.color.white)
-                        .descriptionTextColor(R.color.black)
-                        .textTypeface(Typeface.SANS_SERIF)
-                        .dimColor(R.color.black)
-                        .drawShadow(true)
-                        .cancelable(false)
-                        .tintTarget(true)
-                        .transparentTarget(true)
-                        .targetRadius(100),
-                TapTarget.forView(binding.outputHere,
-                        "Нажмите на иконку или свапните", "Чтобы посмотреть введенные и найденные данные")
+                        "Выбирите показать векторы", "Чтобы получить увидеть как меняется скорость в процессе движения")
                         .outerCircleColor(R.color.primary)
                         .outerCircleAlpha(0.96f)
                         .targetCircleColor(R.color.white)
@@ -224,7 +197,23 @@ public class LessonEducFrag extends Fragment {
                         .cancelable(false)
                         .tintTarget(true)
                         .transparentTarget(true)
-                        .targetRadius(100)).listener(new TapTargetSequence.Listener() {
+                        .targetRadius(100),
+                TapTarget.forView(binding.exitHere, "Выйдите из урока", "")
+                        .outerCircleColor(R.color.primary)
+                        .outerCircleAlpha(0.96f)
+                        .targetCircleColor(R.color.white)
+                        .titleTextSize(24)
+                        .descriptionTextSize(18)
+                        .titleTextColor(R.color.white)
+                        .descriptionTextColor(R.color.black)
+                        .textTypeface(Typeface.SANS_SERIF)
+                        .dimColor(R.color.black)
+                        .drawShadow(true)
+                        .cancelable(false)
+                        .tintTarget(true)
+                        .transparentTarget(true)
+                        .targetRadius(100))
+                        .listener(new TapTargetSequence.Listener() {
             @Override
             public void onSequenceFinish() {
 
@@ -234,8 +223,10 @@ public class LessonEducFrag extends Fragment {
             public void onSequenceStep(TapTarget lastTarget, boolean targetClicked) {
                 targetCount++;
                 if (targetCount == 5) {
-                    createEndEducationDialog();
-                    educationEnd();
+                    requireActivity().getSupportFragmentManager().popBackStack();
+                    repeatEdu = true;
+                    //createEndEducationDialog();
+                    //educationEnd();
                 }
             }
 
@@ -244,19 +235,6 @@ public class LessonEducFrag extends Fragment {
 
             }
         }).start();
-    }
-
-    private void createEndEducationDialog() {
-        DialogFragment dialogFragment = EndEducationDialog.newInstance();
-        dialogFragment.show(Objects.requireNonNull(getActivity()).getSupportFragmentManager(), "congratulations!");
-    }
-
-    //using SharedPreferences we end education
-    @SuppressLint("CommitPrefEdits")
-    private void educationEnd() {
-        SharedPreferences.Editor editor = education.edit();
-        editor.putBoolean(EDUCATION_PREFERENCES, true);
-        editor.apply();
     }
 
     private void getMessage() {
@@ -296,16 +274,16 @@ public class LessonEducFrag extends Fragment {
     private void playClick() {
         play.setImageResource(R.drawable.pause_circle);
         isMoving = true;
-        info.setVisibility(View.VISIBLE);
+        vectors.setVisibility(View.VISIBLE);
         gameView.updateMoving(PhysicsData.getSpeed(), 0, 0);
     }
 
 
-    private void startTesting() {
+    private void startGraph() {
         requireActivity().getSupportFragmentManager()
                 .beginTransaction()
                 .setCustomAnimations(R.anim.nav_default_enter_anim, R.anim.nav_default_exit_anim)
-                .replace(R.id.container, new FragmentTest(0))
+                .replace(R.id.container, new GraphFragment(0))
                 .addToBackStack(null)
                 .commit();
     }

@@ -1,5 +1,7 @@
 package com.example.visualphysics10.ph_lab;
 
+import android.content.SharedPreferences;
+
 import androidx.annotation.NonNull;
 
 import com.example.visualphysics10.R;
@@ -15,6 +17,14 @@ public class PlaceHolderContent4 {
     public static final Map<String, PlaceHolderContent4.PlaceHolderItem4> ITEM_MAP = new HashMap<String, PlaceHolderContent4.PlaceHolderItem4>();
 
     private static final int COUNT = 5;
+    private static int countL1, countL2, countL3, countL4, countL5;
+    private static int countGraphL1, countGraphL2, countGraphL3, countGraphL4, countGraphL5;
+    private static boolean seeVideoL1, seeVideoL2, seeVideoL3, seeVideoL4, seeVideoL5;
+    private static int taskL1, taskL2, taskL3, taskL4, taskL5;
+    private static String lesson1, lesson2, lesson3, lesson4, lesson5;
+    SharedPreferences lessons;
+    private String EDUCATION_PREFERENCES = "educationEnd";
+
 
     static {
         for (int i = 1; i <= COUNT; i++) {
@@ -32,17 +42,28 @@ public class PlaceHolderContent4 {
     }
 
     private static String selectBody(int position) {
+        String part1 = "Вы запускали визуализацию ";
+        String part2 = "Вы построили ";
+        String part3 = "графика, учителю отправиться последний по данной теме";
+        String part4 = "Вы посмотрели видео по данной теме ";
+        String part5 = "Вы решелии ";
+        String part6 = "/2 задач";
         switch (position){
             case 1:
-                return "Вы запускали визуализацию 2 раза" + "\n" + "Вы построили 2 графика, нажмите чтобы выбрать" + "\n" + "Вы посмотрели видео по данной теме" + "\n" + "Вы решелии 2/2 задач";
+                lesson1 =  part1 + countL1 + "\n" + part2 + countGraphL1 + part3  + "\n" + part4 + seeVideoL1 + "\n" + part5 + taskL1 + part6;
+                return lesson1;
             case 2:
-                return "Лабораторная работа по теме: Движение по Окружности";
+                lesson2 = part1 + countL2 + "\n" + part2 + countGraphL2 + part3  + "\n" + part4 + seeVideoL2 + "\n" + part5 + taskL2 + part6;
+                return lesson2;
             case 3:
-                return "Лабораторная работа по теме: II Закон Ньютона";
+                lesson3 =  part1 + countL3 + "\n" + part2 + countGraphL3 + part3  + "\n" + part4 + seeVideoL3 + "\n" + part5 + taskL3 + part6;
+                return lesson3;
             case 4:
-                return "Лабораторная работа по теме: Движение под углом";
+                lesson4 =  part1 + countL4 + "\n" + part2 + countGraphL4 + part3  + "\n" + part4 + seeVideoL4 + "\n" + part5 + taskL4 + part6;
+                return lesson4;
             case 5:
-                return "Лабораторная работа по теме: Закон Сохранения Импульса";
+                lesson5 =  part1 + countL5 + "\n" + part2 + countGraphL5 + part3  + "\n" + part4 + seeVideoL5 + "\n" + part5 + taskL5 + part6;
+                return lesson5;
             default: return "";
         }
     }

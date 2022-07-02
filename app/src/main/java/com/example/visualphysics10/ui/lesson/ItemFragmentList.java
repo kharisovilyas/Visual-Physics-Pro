@@ -17,6 +17,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -31,6 +32,7 @@ import com.example.visualphysics10.database.LessonData;
 import com.example.visualphysics10.database.LessonViewModel;
 import com.example.visualphysics10.databinding.FragmentItemListBinding;
 import com.example.visualphysics10.ph_lesson.PlaceholderContent;
+import com.example.visualphysics10.ui.EndEducationDialog;
 import com.example.visualphysics10.ui.MainFlag;
 import com.example.visualphysics10.ui.item.MyProfileFragment;
 import com.example.visualphysics10.ui.item.SettingsFragment1;
@@ -38,6 +40,7 @@ import com.example.visualphysics10.ui.lab.LabFragmentList;
 import com.example.visualphysics10.ui.lectures.LecturesFragList;
 import com.example.visualphysics10.ui.test.TaskListFragment;
 import com.getkeepsafe.taptargetview.TapTarget;
+import com.getkeepsafe.taptargetview.TapTargetSequence;
 import com.getkeepsafe.taptargetview.TapTargetView;
 import com.google.android.material.navigation.NavigationView;
 
@@ -49,6 +52,7 @@ public class ItemFragmentList extends Fragment implements RecyclerViewAdapter.On
     private int mColumnCount = 1;
     View header;
     private TextView headerName;
+    private TextView headerClass;
     private FragmentItemListBinding binding;
     private DrawerLayout drawerLayout;
     private NavigationView navigation;
@@ -57,6 +61,7 @@ public class ItemFragmentList extends Fragment implements RecyclerViewAdapter.On
     SharedPreferences education;
     private String EDUCATION_PREFERENCES = "educationEnd";
     private boolean educationEnd;
+    private int targetCount = 0;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -93,9 +98,64 @@ public class ItemFragmentList extends Fragment implements RecyclerViewAdapter.On
             educationEnd = education.getBoolean(EDUCATION_PREFERENCES, false);
         }
         if (!educationEnd) {
-            startEducation();
+            if (!LessonEducFrag.repeatEdu) startEducation();
+            else repeatEducation();
         }
     }
+
+    private void repeatEducation() {
+        new TapTargetSequence((Activity) getContext()).targets(
+                TapTarget.forView(binding.menuHere,
+                        "Здесь вы найдете много полезной информации", "Вкладка Леции позволит закрпепить материал" + "\n" +
+                                "Вкладка Задачи поможет усвоить материал" + "\n" +
+                                "Вкладка Лабораторные позволит отправить учителю ваш прогресс для дальнейшей оценки")
+                        .outerCircleColor(R.color.primary)
+                        .outerCircleAlpha(0.96f)
+                        .targetCircleColor(R.color.white)
+                        .titleTextSize(24)
+                        .descriptionTextSize(18)
+                        .titleTextColor(R.color.white)
+                        .descriptionTextColor(R.color.black)
+                        .textTypeface(Typeface.SANS_SERIF)
+                        .dimColor(R.color.black)
+                        .drawShadow(true)
+                        .cancelable(false)
+                        .tintTarget(true)
+                        .transparentTarget(true)
+                        .targetRadius(100))
+                .listener(new TapTargetSequence.Listener() {
+                    @Override
+                    public void onSequenceFinish() {
+
+                    }
+
+                    @Override
+                    public void onSequenceStep(TapTarget lastTarget, boolean targetClicked) {
+                        createDrawer();
+                        createEndEducationDialog();
+                        educationEnd();
+                    }
+
+                    @Override
+                    public void onSequenceCanceled(TapTarget lastTarget) {
+
+                    }
+                }).start();
+    }
+
+    private void createEndEducationDialog() {
+        DialogFragment dialogFragment = EndEducationDialog.newInstance();
+        dialogFragment.show(requireActivity().getSupportFragmentManager(), "congratulations!");
+    }
+
+    //using SharedPreferences we end education
+    @SuppressLint("CommitPrefEdits")
+    private void educationEnd() {
+        SharedPreferences.Editor editor = education.edit();
+        editor.putBoolean(EDUCATION_PREFERENCES, true);
+        editor.apply();
+    }
+
 
     private void startEducation() {
         TapTargetView.showFor((Activity) requireContext(),
@@ -148,9 +208,11 @@ public class ItemFragmentList extends Fragment implements RecyclerViewAdapter.On
     }
 
     //get data from database
+    @SuppressLint("SetTextI18n")
     private void editProfile() throws IndexOutOfBoundsException {
         header = navigation.getHeaderView(0);
-        headerName = (TextView) header.findViewById(R.id.textView2);
+        headerName = (TextView) header.findViewById(R.id.textView1);
+        headerClass = (TextView) header.findViewById(R.id.textView2);
         //
         //using ViewModel for subscribe to a database update using the observe method
         //
@@ -165,7 +227,8 @@ public class ItemFragmentList extends Fragment implements RecyclerViewAdapter.On
                 if (lessonData.size() != 0) {
                     String username = lessonData.get(0).name;
                     headerName.setText(username);
-                    settingsFragment1.setStr(username);
+                    String string = String.valueOf(lessonData.get(0).myClass);
+                    headerClass.setText(getString(R.string.child) + " " + string);
                 }
             }
         });

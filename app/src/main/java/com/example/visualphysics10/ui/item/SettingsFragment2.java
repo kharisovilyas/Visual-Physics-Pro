@@ -16,17 +16,12 @@ import com.example.visualphysics10.ui.AuthorsInfoDialog;
 import java.util.Objects;
 
 public class SettingsFragment2 extends PreferenceFragmentCompat {
-
-    SwitchPreferenceCompat soundSwitch;
     Preference authorsList;
     Preference aboutUs;
     Preference logOut;
-    public static boolean soundEnabled;
-
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         setPreferencesFromResource(R.xml.root_preferences, rootKey);
-        soundSwitch = findPreference("sound");
         authorsList = findPreference("authors");
         aboutUs = findPreference("about");
         logOut = findPreference("exit");
@@ -38,13 +33,6 @@ public class SettingsFragment2 extends PreferenceFragmentCompat {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        soundSwitch.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-            @Override
-            public boolean onPreferenceClick(Preference preference) {
-                soundEnabled = soundSwitch.isChecked();
-                return soundEnabled;
-            }
-        });
         authorsList.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {

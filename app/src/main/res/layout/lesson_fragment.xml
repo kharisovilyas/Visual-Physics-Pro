@@ -12,13 +12,11 @@
         android:layout_height="match_parent">
 
         <FrameLayout
-            android:id="@+id/outputHere"
+            android:id="@+id/exitHere"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            app:layout_constraintEnd_toEndOf="@+id/toolbar"
-            app:layout_constraintTop_toTopOf="parent">
-
-        </FrameLayout>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"

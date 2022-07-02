@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -73,6 +74,12 @@ public class FullScreenDialog5 extends DialogFragment {
         super.onViewCreated(view, savedInstanceState);
         addToolbar();
         input();
+        typeImpulse.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                PhysicsData.setElasticImpulse(isChecked);
+            }
+        });
     }
 
     private void input() {
@@ -85,7 +92,6 @@ public class FullScreenDialog5 extends DialogFragment {
         saveInput.setOnClickListener(v -> {
             try {
                 saveData();
-                addSpParams();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -93,18 +99,12 @@ public class FullScreenDialog5 extends DialogFragment {
         });
     }
 
-    private void addSpParams() {
-        PhysicsData.setElasticImpulse(true);
-    }
-
     private void saveData() {
         PhysicsData.setSpeed(toDouble(input_speed1));
         PhysicsData.setMass1(toDouble(input_mass1));
         PhysicsData.setSpeed2(toDouble(input_speed2));
         PhysicsData.setMass2(toDouble(input_mass2));
-        typeImpulse.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            PhysicsData.setElasticImpulse(!isChecked);
-        });
+
     }
 
 
