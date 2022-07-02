@@ -1,7 +1,7 @@
 package com.example.visualphysics10.ui.login;
 
 public class User {
-    public String id, name, email, password, emailTeacher;
+    public String id, name, email, emailTeacher;
 
     public User() {
 

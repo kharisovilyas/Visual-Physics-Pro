@@ -1,13 +1,11 @@
-package com.example.visualphysics10.ui.item;
+package com.example.visualphysics10.ui.settings;
 
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
-import androidx.preference.SwitchPreferenceCompat;
 
 import com.example.visualphysics10.R;
 import com.example.visualphysics10.ui.AboutUs;

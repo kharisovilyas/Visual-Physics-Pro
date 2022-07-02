@@ -1,5 +1,6 @@
 package com.example.visualphysics10.ui.lesson;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;

@@ -6,13 +6,10 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.Rect;
-import android.media.MediaPlayer;
-import android.util.Log;
 
 import com.example.visualphysics10.database.PhysicsData;
 import com.example.visualphysics10.engine.PhysicsSprite;
 import com.example.visualphysics10.engine.Vector2;
-import com.example.visualphysics10.ui.item.SettingsFragment2;
 import com.example.visualphysics10.ui.lesson.GraphFragment;
 import com.example.visualphysics10.ui.lesson.LessonFragment;
 

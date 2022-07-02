@@ -34,7 +34,7 @@
         <fragment
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             android:id="@+id/pref"
-            android:name="com.example.visualphysics10.ui.item.SettingsFragment2"
+            android:name="com.example.visualphysics10.ui.settings.SettingsFragment2"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 

@@ -5,6 +5,13 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.lectures.LecturesFragList">
+    <ImageView
+        android:layout_marginTop="?attr/actionBarSize"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:scaleType="centerCrop"
+        android:src="@drawable/background" />
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/collapsing_toolbar"

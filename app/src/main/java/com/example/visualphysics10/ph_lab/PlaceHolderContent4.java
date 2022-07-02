@@ -1,10 +1,10 @@
 package com.example.visualphysics10.ph_lab;
 
-import android.content.SharedPreferences;
 
 import androidx.annotation.NonNull;
 
 import com.example.visualphysics10.R;
+import com.example.visualphysics10.ui.lesson.LessonEducFrag;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,16 +15,7 @@ public class PlaceHolderContent4 {
     public static final List<PlaceHolderContent4.PlaceHolderItem4> ITEMS = new ArrayList<PlaceHolderContent4.PlaceHolderItem4>();
 
     public static final Map<String, PlaceHolderContent4.PlaceHolderItem4> ITEM_MAP = new HashMap<String, PlaceHolderContent4.PlaceHolderItem4>();
-
-    private static final int COUNT = 5;
-    private static int countL1, countL2, countL3, countL4, countL5;
-    private static int countGraphL1, countGraphL2, countGraphL3, countGraphL4, countGraphL5;
-    private static boolean seeVideoL1, seeVideoL2, seeVideoL3, seeVideoL4, seeVideoL5;
-    private static int taskL1, taskL2, taskL3, taskL4, taskL5;
-    private static String lesson1, lesson2, lesson3, lesson4, lesson5;
-    SharedPreferences lessons;
-    private String EDUCATION_PREFERENCES = "educationEnd";
-
+    public static final int COUNT = 5;
 
     static {
         for (int i = 1; i <= COUNT; i++) {
@@ -42,27 +33,21 @@ public class PlaceHolderContent4 {
     }
 
     private static String selectBody(int position) {
-        String part1 = "Вы запускали визуализацию ";
-        String part2 = "Вы построили ";
-        String part3 = "графика, учителю отправиться последний по данной теме";
-        String part4 = "Вы посмотрели видео по данной теме ";
-        String part5 = "Вы решелии ";
-        String part6 = "/2 задач";
+        String lesson1 = "Вы прошли тему Ускорение! Посмотрели видео-разбор темы, несколько раз запускали визуализацию и даже построили графики движения, решили все задачи. Отправить Вашему учителю последний построенный график движения по теме Ускорение ?";
+        String lesson2 = "Вы прошли тему Движение по Окружности! Посмотрели видео-разбор темы, несколько раз запускали визуализацию и даже построили графики движения, решили все задачи. Отправить Вашему учителю последний построенный график движения по теме Движение по Окружности ?";
+        String lesson3 = "Вы прошли тему II Закон Ньютона! Посмотрели видео-разбор темы, несколько раз запускали визуализацию и даже построили графики движения, решили все задачи. Отправить Вашему учителю последний построенный график движения по теме II Закон Ньютона ?";
+        String lesson4 = "Вы прошли тему Движение под углом к горизонту! Посмотрели видео-разбор темы, несколько раз запускали визуализацию и даже построили графики движения, решили все задачи. Отправить Вашему учителю последний построенный график движения по теме Движение под углом к горизонту ?";
+        String lesson5 = "Вы прошли тему Закон Сохранения импульса! Посмотрели видео-разбор темы, несколько раз запускали визуализацию и даже построили графики движения, решили все задачи. Отправить Вашему учителю последний построенный график движения по теме Движение по Окружности Закон Сохранения импульса ?";
         switch (position){
             case 1:
-                lesson1 =  part1 + countL1 + "\n" + part2 + countGraphL1 + part3  + "\n" + part4 + seeVideoL1 + "\n" + part5 + taskL1 + part6;
                 return lesson1;
             case 2:
-                lesson2 = part1 + countL2 + "\n" + part2 + countGraphL2 + part3  + "\n" + part4 + seeVideoL2 + "\n" + part5 + taskL2 + part6;
                 return lesson2;
             case 3:
-                lesson3 =  part1 + countL3 + "\n" + part2 + countGraphL3 + part3  + "\n" + part4 + seeVideoL3 + "\n" + part5 + taskL3 + part6;
                 return lesson3;
             case 4:
-                lesson4 =  part1 + countL4 + "\n" + part2 + countGraphL4 + part3  + "\n" + part4 + seeVideoL4 + "\n" + part5 + taskL4 + part6;
                 return lesson4;
             case 5:
-                lesson5 =  part1 + countL5 + "\n" + part2 + countGraphL5 + part3  + "\n" + part4 + seeVideoL5 + "\n" + part5 + taskL5 + part6;
                 return lesson5;
             default: return "";
         }

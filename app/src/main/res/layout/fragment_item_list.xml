@@ -6,10 +6,17 @@
     android:layout_height="match_parent"
     android:id="@+id/drawerLayout">
 
+
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
+        <ImageView
+            android:layout_marginTop="?attr/actionBarSize"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:scaleType="centerCrop"
+            android:src="@drawable/background" />
         <FrameLayout
             android:id="@+id/menuHere"
             android:layout_width="60dp"
@@ -32,7 +39,6 @@
             android:name="com.example.visualphysics10.ItemFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/background"
             app:layoutManager="LinearLayoutManager"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             tools:context=".ui.lesson.ItemFragmentList"

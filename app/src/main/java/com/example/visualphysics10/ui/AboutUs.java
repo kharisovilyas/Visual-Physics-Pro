@@ -1,7 +1,9 @@
 package com.example.visualphysics10.ui;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.os.Bundle;
+import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,17 +47,20 @@ public class AboutUs extends DialogFragment {
         return binding.getRoot();
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         addToolbar();
+        binding.raz1.setMovementMethod(LinkMovementMethod.getInstance());
+        binding.raz2.setMovementMethod(LinkMovementMethod.getInstance());
     }
 
     private void addToolbar() {
         MaterialToolbar toolbar = binding.toolbar;
-        ((MainActivity) Objects.requireNonNull(getActivity())).setSupportActionBar(toolbar);
+        ((MainActivity) requireActivity()).setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.close);
-        toolbar.setTitle("О приложении");
+        toolbar.setTitle(R.string.aboutAsTitle);
         toolbar.setNavigationOnClickListener(v -> {
             dismiss();
         });

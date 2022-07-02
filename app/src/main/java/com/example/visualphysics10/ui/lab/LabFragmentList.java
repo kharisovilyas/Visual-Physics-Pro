@@ -3,6 +3,7 @@ package com.example.visualphysics10.ui.lab;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -27,6 +28,7 @@ import com.example.visualphysics10.database.LessonData;
 import com.example.visualphysics10.database.LessonViewModel;
 import com.example.visualphysics10.databinding.FragmentLabListBinding;
 import com.example.visualphysics10.ph_lab.PlaceHolderContent4;
+import com.example.visualphysics10.ui.lesson.LessonEducFrag;
 
 import java.util.List;
 import java.util.Objects;
@@ -39,7 +41,6 @@ public class LabFragmentList extends Fragment implements RecyclerViewAdapter.OnL
     private String youClass;
     private LessonViewModel viewModel;
     private String body;
-
 
     @Nullable
     @Override
@@ -54,6 +55,7 @@ public class LabFragmentList extends Fragment implements RecyclerViewAdapter.OnL
         addRecycler(view);
         addToolbar();
     }
+
 
     @SuppressLint("ResourceAsColor")
     private void addToolbar() {

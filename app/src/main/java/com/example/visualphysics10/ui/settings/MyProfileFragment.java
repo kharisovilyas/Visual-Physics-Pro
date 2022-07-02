@@ -1,8 +1,7 @@
-package com.example.visualphysics10.ui.item;
+package com.example.visualphysics10.ui.settings;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,14 +25,9 @@ import java.util.List;
 public class MyProfileFragment extends Fragment {
     private FragmentMyProfileBinding binding;
     public static String string = "VisPhysUser";
-    private static String nameHint;
-    public static boolean isFABClicked = false;
     private LessonViewModel viewModel;
     public LessonData lessonDataList = new LessonData();
 
-    public void setStr(String hint) {
-        nameHint = hint;
-    }
 
     @Nullable
     @Override
@@ -69,9 +63,10 @@ public class MyProfileFragment extends Fragment {
                 // we take the last recorded value from the database, while the database is not empty
                 // and paste into textview
                 //
-                lessonData.set(0, lessonDataList);
+                lessonData.add(0, lessonDataList);
             }
         });
+        viewModel.deleteAllData();
         viewModel.insert(lessonDataList);
     }
 

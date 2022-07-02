@@ -48,7 +48,7 @@
     <string name="send"><font size="12">Отправить работу</font></string>
     <string name="menu_1"><font size="18">Лекции</font></string>
     <string name="menu_2"><font size="18">Задачи</font></string>
-    <string name="menu_3"><font size="18">Настройки</font></string>
+    <string name="menu_3"><font size="18">О приложении</font></string>
     <string name="menu_5"><font size="18">Мой профиль</font></string>
     <string name="menu_6"><font size="18">Лабораторные</font></string>
     <string name="menu_4"><font color='red' size="18">Выйти</font></string>
@@ -218,6 +218,8 @@
     <string name="regSnack3">Восстановить пароль</string>
     <string name="contactForMe">Для восстановления пароля напишите разработчику, он отправит Вам письмо с инструкцией по восстановлению пароля</string>
     <string name="link"><a href="mailto:relanius.ilyas@gmail.com?subject=Восстановление%20пароля&amp;body=Почта%20указанная%20при%20регистрации:%0AПожалуйста%20восстановите%20мой%20пароль">relanius.ilyas@gmail.com</a></string>
+    <string name="khIlias"><a href="mailto:relanius.ilyas@gmail.com">Харисов Ильяс</a></string>
+    <string name="sanAndrey"><a href="mailto:andreysankov2004@gmail.com">Саньков Андрей</a></string>
     <string name="login_title">Войдите в аккаунт</string>
     <string name="reg_title">Регистрация пользователя</string>
     <string name="input_class">Введите свой класс</string>
@@ -236,4 +238,6 @@
     <string name="graph_save">сохранить</string>
     <string name="changes">изменить</string>
     <string name="child">Ученик</string>
+    <string name="aboutAsTitle">О приложении</string>
+    <string name="raz">Разработчики:</string>
 </resources>

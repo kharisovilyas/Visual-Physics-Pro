@@ -1,29 +1,18 @@
-package com.example.visualphysics10.ui.item;
+package com.example.visualphysics10.ui.settings;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 
 import com.example.visualphysics10.MainActivity;
 import com.example.visualphysics10.R;
-import com.example.visualphysics10.database.LessonData;
-import com.example.visualphysics10.database.LessonViewModel;
 import com.example.visualphysics10.databinding.FragmentSettingsBinding;
-
-import org.w3c.dom.Text;
-
-import java.util.List;
-import java.util.Objects;
 
 public class SettingsFragment1 extends Fragment {
     private FragmentSettingsBinding binding;

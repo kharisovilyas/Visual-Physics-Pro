@@ -22,7 +22,7 @@
         <item
             android:id="@+id/settings"
             android:iconTintMode="multiply"
-            android:icon="@drawable/settings"
+            android:icon="@drawable/water_mark"
             android:title="@string/menu_3" />
     </group>
 </menu>

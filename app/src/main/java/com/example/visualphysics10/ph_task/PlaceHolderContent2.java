@@ -53,11 +53,11 @@ public class PlaceHolderContent2 {
 
     static int switchImageView(int position) {
         switch (position){
-            case 1: return R.drawable.lesson_1;
-            case 2: return R.drawable.lesson_2;
-            case 3: return R.drawable.lesson_3;
-            case 4: return R.drawable.lesson_4;
-            case 5: return R.drawable.lesson_5;
+            case 1: return R.drawable.task1;
+            case 2: return R.drawable.task2;
+            case 3: return R.drawable.task3;
+            case 4: return R.drawable.task4;
+            case 5: return R.drawable.task5;
             default: return 0;
         }
     }

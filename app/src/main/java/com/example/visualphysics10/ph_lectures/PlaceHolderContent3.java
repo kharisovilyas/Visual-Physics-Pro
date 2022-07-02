@@ -35,15 +35,15 @@ public class PlaceHolderContent3 {
     private static String switchLesson(int position) {
         switch (position){
             case 1:
-                return "Ускорение";
+                return "Лекции по теме Ускорение";
             case 2:
-                return "Движение по Окружности";
+                return "Лекции по теме Движение по Окружности";
             case 3:
-                return "II Закон Ньютона";
+                return "Лекции по теме II Закон Ньютона";
             case 4:
-                return "Движение под углом";
+                return "Лекции по теме Движение под углом";
             case 5:
-                return "Закон Сохранения Импульса";
+                return "Лекции по теме Закон Сохранения Импульса";
             default: return "";
         }
     }
@@ -51,11 +51,11 @@ public class PlaceHolderContent3 {
 
     static int switchImageView(int position) {
         switch (position){
-            case 1: return R.drawable.lesson_1;
-            case 2: return R.drawable.lesson_2;
-            case 3: return R.drawable.lesson_3;
-            case 4: return R.drawable.lesson_4;
-            case 5: return R.drawable.lesson_5;
+            case 1: return R.drawable.lec_1;
+            case 2: return R.drawable.lec_2;
+            case 3: return R.drawable.lec_3;
+            case 4: return R.drawable.lec_4;
+            case 5: return R.drawable.lec_5;
             default: return 0;
         }
     }
