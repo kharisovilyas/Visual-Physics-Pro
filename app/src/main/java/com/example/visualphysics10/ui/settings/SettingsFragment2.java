@@ -16,13 +16,12 @@ import java.util.Objects;
 public class SettingsFragment2 extends PreferenceFragmentCompat {
     Preference authorsList;
     Preference aboutUs;
-    Preference logOut;
+
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         setPreferencesFromResource(R.xml.root_preferences, rootKey);
         authorsList = findPreference("authors");
         aboutUs = findPreference("about");
-        logOut = findPreference("exit");
     }
 
 

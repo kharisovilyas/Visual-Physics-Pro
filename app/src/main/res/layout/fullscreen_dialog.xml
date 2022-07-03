@@ -55,16 +55,17 @@
             android:textColorHint="@color/primary"
             app:counterTextColor="@color/black"
             app:counterEnabled="true"
-            app:counterMaxLength="4"
+            app:counterMaxLength="2"
             app:helperText="@string/input_speed"
             app:helperTextTextColor="@color/color_accent"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:inputType="numberDecimal"
+                android:inputType="number"
+                android:digits="0123456789.-"
                 android:textColor="@color/black"
                 android:id="@+id/inputSpeed"
-                android:maxLength="5"
+                android:maxLength="2"
                 android:layout_height="wrap_content"/>
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -85,16 +86,17 @@
             android:textColorHint="@color/primary"
             app:counterTextColor="@color/black"
             app:counterEnabled="true"
-            app:counterMaxLength="4"
+            app:counterMaxLength="2"
             app:helperText="@string/input_acc"
             app:helperTextTextColor="@color/color_accent"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:inputType="numberDecimal"
+                android:inputType="number"
+                android:digits="0123456789.-"
                 android:id="@+id/inputAcc"
                 android:textColor="@color/black"
-                android:maxLength="5"
+                android:maxLength="2"
                 android:layout_height="wrap_content"/>
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -116,7 +118,7 @@
             android:textColorHint="@color/primary"
             app:counterTextColor="@color/black"
             app:counterEnabled="true"
-            app:counterMaxLength="4"
+            app:counterMaxLength="3"
             app:helperText="@string/input_rad"
             app:helperTextTextColor="@color/color_accent"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
@@ -125,7 +127,7 @@
                 android:inputType="numberDecimal"
                 android:id="@+id/inputRad"
                 android:textColor="@color/black"
-                android:maxLength="5"
+                android:maxLength="3"
                 android:layout_height="wrap_content"/>
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -157,7 +159,7 @@
                 android:inputType="numberDecimal"
                 android:id="@+id/inputForce"
                 android:textColor="@color/black"
-                android:maxLength="5"
+                android:maxLength="4"
                 android:layout_height="wrap_content"/>
         </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
@@ -187,7 +189,7 @@
                 android:inputType="numberDecimal"
                 android:id="@+id/inputMass"
                 android:textColor="@color/black"
-                android:maxLength="5"
+                android:maxLength="4"
                 android:layout_height="wrap_content"/>
         </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
@@ -217,7 +219,7 @@
                 android:inputType="numberDecimal"
                 android:id="@+id/inputAngle"
                 android:textColor="@color/black"
-                android:maxLength="5"
+                android:maxLength="4"
                 android:layout_height="wrap_content"/>
         </com.google.android.material.textfield.TextInputLayout>
 

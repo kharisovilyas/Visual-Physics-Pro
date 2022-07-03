@@ -18,6 +18,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
+        <FrameLayout
+            android:id="@+id/outputHere"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
@@ -194,7 +201,7 @@
                 android:orientation="vertical">
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/outputSpeed"
+                    android:id="@+id/output1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="top"
@@ -206,7 +213,51 @@
                     android:textSize="16sp" />
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/outputAcc"
+                    android:id="@+id/output2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:lineSpacingExtra="10sp"
+                    android:maxEms="12"
+                    android:padding="32dp"
+                    android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/output3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:lineSpacingExtra="10sp"
+                    android:maxEms="12"
+                    android:padding="32dp"
+                    android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/output4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:lineSpacingExtra="10sp"
+                    android:maxEms="12"
+                    android:padding="32dp"
+                    android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/output5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:lineSpacingExtra="10sp"
+                    android:maxEms="12"
+                    android:padding="32dp"
+                    android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/output6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="top"

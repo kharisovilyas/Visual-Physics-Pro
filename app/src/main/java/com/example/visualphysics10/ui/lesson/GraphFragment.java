@@ -1,6 +1,9 @@
 package com.example.visualphysics10.ui.lesson;
 
+import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -53,6 +56,7 @@ public class GraphFragment extends Fragment {
         return binding.getRoot();
     }
 
+    @SuppressLint("ResourceAsColor")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -68,6 +72,7 @@ public class GraphFragment extends Fragment {
         graph.getViewport().setMinY(0);
         graph.getViewport().setMaxY(100);
         graph.getGridLabelRenderer().setGridColor(R.color.black);
+        graph.setBackgroundColor(Color.WHITE);
         graph.addSeries(series);
         graph.getGridLabelRenderer().setVerticalLabelsColor(R.color.black);
         graph.getGridLabelRenderer().setHorizontalLabelsColor(R.color.black);
@@ -83,6 +88,7 @@ public class GraphFragment extends Fragment {
         graph2.getViewport().setMinY(0);
         graph2.getViewport().setMaxY(100);
         graph2.getGridLabelRenderer().setGridColor(R.color.black);
+        graph2.setBackgroundColor(Color.WHITE);
         graph2.addSeries(series2);
         graph2.getGridLabelRenderer().setVerticalLabelsColor(R.color.black);
         graph2.getGridLabelRenderer().setHorizontalLabelsColor(R.color.black);
@@ -111,6 +117,21 @@ public class GraphFragment extends Fragment {
             PhysicsModel.time = 0;
         });
 
+
+        binding.saveGraph.setOnClickListener(v -> {
+            binding.buildGraph.setVisibility(View.GONE);
+            binding.buildGraph2.setVisibility(View.GONE);
+            binding.text1.setTextColor(R.color.white);
+            binding.text2.setTextColor(R.color.white);
+            Bitmap bmp1 = loadBitmapFromView(binding.linearLayout3, binding.linearLayout3.getWidth(), binding.linearLayout3.getHeight());
+            Bitmap bmp2 = loadBitmapFromView(binding.linearLayout4, binding.linearLayout4.getWidth(), binding.linearLayout4.getHeight());
+            createdFullScreenDialog(bmp1, bmp2);
+            binding.text1.setTextColor(R.color.black);
+            binding.text2.setTextColor(R.color.black);
+            binding.buildGraph.setVisibility(View.VISIBLE);
+            binding.buildGraph2.setVisibility(View.VISIBLE);
+        });
+
     }
 
     public static void addVectorX(int x, int y, int time) {
@@ -123,11 +144,24 @@ public class GraphFragment extends Fragment {
         vectorsY.add(dataPoint);
     }
 
-
     @Override
     public void onDestroy() {
         super.onDestroy();
         vectorsX.clear();
         vectorsY.clear();
+    }
+
+    public static Bitmap loadBitmapFromView(View v, int width, int height) {
+        Bitmap b = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        Canvas c = new Canvas(b);
+        v.draw(c);
+        return b;
+    }
+
+    private void createdFullScreenDialog(Bitmap bmp1, Bitmap bmp2) {
+
+        LabFileDialogFragment fragment = new LabFileDialogFragment(bmp1, bmp2);
+
+        fragment.show(requireActivity().getSupportFragmentManager(), "saveGraph");
     }
 }

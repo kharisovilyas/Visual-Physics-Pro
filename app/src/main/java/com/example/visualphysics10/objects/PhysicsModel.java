@@ -182,9 +182,6 @@ public class PhysicsModel extends PhysicsSprite {
                 canvas.drawLine((float) x + l / 2, (float) y + h / 2, (float) x + l / 2, (float) (y + vectorY * 3) + h / 2, paint);
             }
         }
-        PhysicsData.setSpeedEnd(vectorX);
-
-
     }
 
 
@@ -313,10 +310,10 @@ public class PhysicsModel extends PhysicsSprite {
 
     //логика остановки визуализации
     public void onStopClick() {
+        PhysicsData.setSpeedEnd(vectorX);
         updateVector(0, 0);
         onBoardRight = false;
         onBoardLeft = false;
-        PhysicsData.setSpeedEnd(vectorX);
         onEarth = false;
         stopSound();
     }

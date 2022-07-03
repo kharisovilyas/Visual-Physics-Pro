@@ -1,7 +1,9 @@
 package com.example.visualphysics10.ui;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.os.Bundle;
+import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,6 +52,17 @@ public class AuthorsInfoDialog extends DialogFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         addToolbar();
+        initText();
+    }
+
+    @SuppressLint("SetTextI18n")
+    private void initText() {
+        binding.text1.setText(getString(R.string.text1));
+        binding.text2.setMovementMethod(LinkMovementMethod.getInstance());
+        binding.text3.setMovementMethod(LinkMovementMethod.getInstance());
+        binding.text4.setText(R.string.text2);
+        binding.text5.setMovementMethod(LinkMovementMethod.getInstance());
+
     }
 
     private void addToolbar() {

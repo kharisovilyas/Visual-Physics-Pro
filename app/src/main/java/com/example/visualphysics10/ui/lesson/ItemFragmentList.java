@@ -4,12 +4,15 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -33,11 +36,12 @@ import com.example.visualphysics10.database.LessonViewModel;
 import com.example.visualphysics10.databinding.FragmentItemListBinding;
 import com.example.visualphysics10.ph_lesson.PlaceholderContent;
 import com.example.visualphysics10.ui.EndEducationDialog;
+import com.example.visualphysics10.ui.ExitDialog;
 import com.example.visualphysics10.ui.MainFlag;
-import com.example.visualphysics10.ui.settings.MyProfileFragment;
-import com.example.visualphysics10.ui.settings.SettingsFragment1;
 import com.example.visualphysics10.ui.lab.LabFragmentList;
 import com.example.visualphysics10.ui.lectures.LecturesFragList;
+import com.example.visualphysics10.ui.settings.MyProfileFragment;
+import com.example.visualphysics10.ui.settings.SettingsFragment1;
 import com.example.visualphysics10.ui.test.TaskListFragment;
 import com.getkeepsafe.taptargetview.TapTarget;
 import com.getkeepsafe.taptargetview.TapTargetSequence;
@@ -54,6 +58,7 @@ public class ItemFragmentList extends Fragment implements RecyclerViewAdapter.On
     private TextView headerName;
     private TextView headerClass;
     private FragmentItemListBinding binding;
+    ImageView imageView;
     private DrawerLayout drawerLayout;
     private NavigationView navigation;
     private LessonViewModel viewModel;
@@ -195,6 +200,10 @@ public class ItemFragmentList extends Fragment implements RecyclerViewAdapter.On
         navigation.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menu) {
+                if (menu.getItemId() == R.id.exit) {
+                    exitProfile();
+                    return true;
+                }
                 requireActivity().getSupportFragmentManager()
                         .beginTransaction()
                         .setCustomAnimations(R.anim.enter_left_to_right, R.anim.exit_left_to_right)
@@ -213,6 +222,7 @@ public class ItemFragmentList extends Fragment implements RecyclerViewAdapter.On
         header = navigation.getHeaderView(0);
         headerName = (TextView) header.findViewById(R.id.textView1);
         headerClass = (TextView) header.findViewById(R.id.textView2);
+        imageView = header.findViewById(R.id.imageView);
         //
         //using ViewModel for subscribe to a database update using the observe method
         //
@@ -229,6 +239,7 @@ public class ItemFragmentList extends Fragment implements RecyclerViewAdapter.On
                     headerName.setText(username);
                     String string = String.valueOf(lessonData.get(0).myClass);
                     headerClass.setText(getString(R.string.child) + " " + string);
+
                 }
             }
         });
@@ -260,6 +271,11 @@ public class ItemFragmentList extends Fragment implements RecyclerViewAdapter.On
         menu.setChecked(true);
         drawerLayout.closeDrawers();
         return fragment;
+    }
+
+    private void exitProfile() {
+        DialogFragment dialogFragment = ExitDialog.newInstance();
+        dialogFragment.show(requireActivity().getSupportFragmentManager(), "exit!");
     }
 
     private void addToolbar() {
@@ -301,4 +317,10 @@ public class ItemFragmentList extends Fragment implements RecyclerViewAdapter.On
                 .commit();
     }
 
+    public static Bitmap BytesToBimap(byte[] b) {
+        if (b.length == 0) {
+            return null;
+        }
+        return BitmapFactory.decodeByteArray(b, 0, b.length);
+    }
 }

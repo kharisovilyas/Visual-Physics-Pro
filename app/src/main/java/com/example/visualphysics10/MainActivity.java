@@ -12,10 +12,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.visualphysics10.ui.login.LoginFragment;
-import com.example.visualphysics10.ui.lesson.ItemFragmentList;
 import com.example.visualphysics10.databinding.ActivityMainBinding;
 import com.example.visualphysics10.ui.MainFlag;
+import com.example.visualphysics10.ui.lesson.ItemFragmentList;
+import com.example.visualphysics10.ui.login.LoginFragment;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 public class MainActivity extends AppCompatActivity {
@@ -39,9 +39,8 @@ public class MainActivity extends AppCompatActivity {
             isFirstEnter = enter.getBoolean(FIRST_ENTER, false);
         }
         if (!isFirstEnter) {
-            MainFlag.setEndReg(true);
             startLogin();
-        }else{
+        } else {
             startApp();
         }
     }
@@ -56,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         if (loginFragment != null) {
             fragmentTransaction.add(R.id.container, loginFragment).commit();
         }
+        MainFlag.setEndReg(true);
     }
 
     //redefine the method...
@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
 
         count = fragmentManager.getBackStackEntryCount();
 
-        if (count == 0 || MainFlag.isEndReg()) {
+        if (count == 0 || (MainFlag.isEndReg() && count == 1)) {
             exitApp();
         } else {
             exitFragment();
@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void exitFragment() {
         if (count > 1 || MainFlag.isNotLesson()) fragmentManager.popBackStack();
-        else new MaterialAlertDialogBuilder(this,R.style.MaterialAlert)
+        else new MaterialAlertDialogBuilder(this, R.style.MaterialAlert)
                 .setTitle(R.string.title_1)
                 .setMessage(R.string.message_1)
                 .setCancelable(false)
@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void exitApp() {
-        new MaterialAlertDialogBuilder(this,R.style.MaterialAlert)
+        new MaterialAlertDialogBuilder(this, R.style.MaterialAlert)
                 .setTitle(R.string.title_1)
                 .setMessage(R.string.message_2)
                 .setCancelable(true)

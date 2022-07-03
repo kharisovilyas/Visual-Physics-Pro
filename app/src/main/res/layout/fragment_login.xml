@@ -79,12 +79,12 @@
             android:textColorHint="@color/primary"
             app:boxStrokeColor="@color/primary"
             app:counterTextColor="@color/black"
-            app:endIconMode="clear_text"
             app:endIconTint="@color/icon_color"
             app:helperTextTextColor="@color/color_accent"
             app:hintTextColor="@color/primary"
             app:placeholderTextColor="@color/primary"
             app:startIconDrawable="@drawable/password"
+            app:endIconMode="password_toggle"
             app:startIconTint="@color/icon_color">
 
             <com.google.android.material.textfield.TextInputEditText

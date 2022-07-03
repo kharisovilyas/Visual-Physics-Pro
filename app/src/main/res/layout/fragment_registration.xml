@@ -86,7 +86,7 @@
                 android:id="@+id/inputYouClass"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"
+                android:inputType="textShortMessage"
                 android:maxLines="1"
                 android:textColor="@color/black" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -131,7 +131,7 @@
             android:textColorHint="@color/primary"
             app:boxStrokeColor="@color/primary"
             app:counterTextColor="@color/black"
-            app:endIconMode="clear_text"
+            app:endIconMode="password_toggle"
             app:endIconTint="@color/icon_color"
             app:helperTextTextColor="@color/color_accent"
             app:hintTextColor="@color/primary"
@@ -171,7 +171,7 @@
                 android:id="@+id/inputEmailTeacher"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"
+                android:inputType="textEmailAddress|text"
                 android:maxLines="1"
                 android:textColor="@color/black" />
         </com.google.android.material.textfield.TextInputLayout>

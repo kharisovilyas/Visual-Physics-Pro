@@ -166,6 +166,21 @@ public class LessonEducFrag extends Fragment {
                         .tintTarget(true)
                         .transparentTarget(true)
                         .targetRadius(100),
+                TapTarget.forView(binding.outputHere, "Нажмите или свайпните", "Чтобы посмотреть какие данные можно посчитать, на основании ввведенных")
+                        .outerCircleColor(R.color.primary)
+                        .outerCircleAlpha(0.96f)
+                        .targetCircleColor(R.color.white)
+                        .titleTextSize(24)
+                        .descriptionTextSize(18)
+                        .titleTextColor(R.color.white)
+                        .descriptionTextColor(R.color.black)
+                        .textTypeface(Typeface.SANS_SERIF)
+                        .dimColor(R.color.black)
+                        .drawShadow(true)
+                        .cancelable(false)
+                        .tintTarget(true)
+                        .transparentTarget(true)
+                        .targetRadius(100),
                 TapTarget.forView(binding.vectors,
                         "Выбирите показать векторы", "Чтобы получить увидеть как меняется скорость в процессе движения")
                         .outerCircleColor(R.color.primary)
@@ -222,7 +237,7 @@ public class LessonEducFrag extends Fragment {
             @Override
             public void onSequenceStep(TapTarget lastTarget, boolean targetClicked) {
                 targetCount++;
-                if (targetCount == 5) {
+                if (targetCount == 6) {
                     requireActivity().getSupportFragmentManager().popBackStack();
                     repeatEdu = true;
                     //createEndEducationDialog();
@@ -239,8 +254,8 @@ public class LessonEducFrag extends Fragment {
 
     private void getMessage() {
         addToolbarNav();
-        MaterialTextView outputMes = binding.outputSpeed;
-        MaterialTextView outputNull = binding.outputAcc;
+        MaterialTextView outputMes = binding.output1;
+        MaterialTextView outputNull = binding.output2;
         outputMes.setText(R.string.outputMes);
         outputNull.setText("");
     }
@@ -251,8 +266,8 @@ public class LessonEducFrag extends Fragment {
         drawerLayout = binding.drawerLayout;
         navigation = binding.navigationView;
         addToolbarNav();
-        MaterialTextView outputSpeed = binding.outputSpeed;
-        MaterialTextView outputAcc = binding.outputAcc;
+        MaterialTextView outputSpeed = binding.output1;
+        MaterialTextView outputAcc = binding.output2;
         String string = getString(R.string.outputSpeed) + "\n" + PhysicsData.getSpeed() + " [м/с]";
         String string2 = getString(R.string.outputAcc) + "\n" + PhysicsData.getAcc() + " [м/с^2]";
         outputSpeed.setText(string);
@@ -262,7 +277,7 @@ public class LessonEducFrag extends Fragment {
     private void addToolbarNav() {
         Toolbar toolbar = binding.toolbarNavView;
         ((MainActivity) Objects.requireNonNull(getActivity())).setSupportActionBar(toolbar);
-        toolbar.setTitle("Введенные данные");
+        toolbar.setTitle(R.string.outputDataTitle);
     }
 
     private void pauseClick() {

@@ -15,11 +15,6 @@
             app:summary="@string/about_us"
             app:title="@string/settings_3"
             app:key="about"/>
-        <Preference
-            app:icon="@drawable/log_out"
-            app:summary="@string/exit_profile_subtitle"
-            app:title="@string/settings_4"
-            app:key="exit"/>
 
 
     </PreferenceCategory>

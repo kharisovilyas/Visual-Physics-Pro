@@ -3,13 +3,12 @@ package com.example.visualphysics10.ui.lab;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -28,7 +27,6 @@ import com.example.visualphysics10.database.LessonData;
 import com.example.visualphysics10.database.LessonViewModel;
 import com.example.visualphysics10.databinding.FragmentLabListBinding;
 import com.example.visualphysics10.ph_lab.PlaceHolderContent4;
-import com.example.visualphysics10.ui.lesson.LessonEducFrag;
 
 import java.util.List;
 import java.util.Objects;
@@ -40,7 +38,9 @@ public class LabFragmentList extends Fragment implements RecyclerViewAdapter.OnL
     private String name;
     private String youClass;
     private LessonViewModel viewModel;
-    private String body;
+    private byte[] image;
+    private boolean im;
+    private int lenIm;
 
     @Nullable
     @Override
@@ -87,29 +87,40 @@ public class LabFragmentList extends Fragment implements RecyclerViewAdapter.OnL
     //perform a fragment transaction on a specific-Lesson click
     @Override
     public void onLessonClick(int position) {
+        Toast.makeText(requireContext(), getString(R.string.forSave), Toast.LENGTH_LONG).show();
         switch (position) {
             case 0:
-                sendVelocity();
+                sendLesson(String.valueOf(R.string.sbj1));
                 break;
-
+            case 1:
+                sendLesson(String.valueOf(R.string.sbj2));
+                break;
+            case 2:
+                sendLesson(String.valueOf(R.string.sbj3));
+                break;
+            case 3:
+                sendLesson(String.valueOf(R.string.sbj4));
+                break;
+            case 4:
+                sendLesson(String.valueOf(R.string.sbj5));
+                break;
         }
     }
 
     @SuppressLint("IntentReset")
-    public void sendVelocity() {
+    public void sendLesson(String body) {
         initData();
+        if (image != null) lenIm = image.length;
         String[] recipients = new String[]{emailTeacher};
-        byte[] image = new byte[0];
-        String subject = name + ". " + youClass;
-        String content = body;
+        String subject = body + " " + name + getString(R.string.sbj) + " " + youClass;
+        String content = getString(R.string.prof) + " " + im;
+        im = (lenIm > 74000);
         Intent intentEmail = new Intent(Intent.ACTION_SEND, Uri.parse("mailto:"));
         intentEmail.putExtra(Intent.EXTRA_EMAIL, recipients);
         intentEmail.putExtra(Intent.EXTRA_SUBJECT, subject);
         intentEmail.putExtra(Intent.EXTRA_TEXT, content);
-        intentEmail.putExtra(Intent.EXTRA_INTENT, image);
         intentEmail.setType("text/plain");
-
-        startActivity(Intent.createChooser(intentEmail, "Обязательно выбирите отправку по почте!.."));
+        startActivity(Intent.createChooser(intentEmail, getString(R.string.forGmail)));
     }
 
     private void initData() {
@@ -126,6 +137,7 @@ public class LabFragmentList extends Fragment implements RecyclerViewAdapter.OnL
                     name = lessonData.get(0).name;
                     youClass = lessonData.get(0).myClass;
                     emailTeacher = lessonData.get(0).emailTeacher;
+                    if (lessonData.size() > 1) image = lessonData.get(1).image;
                 }
             }
         });

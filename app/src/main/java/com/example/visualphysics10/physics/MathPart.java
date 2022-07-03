@@ -76,7 +76,9 @@ public class MathPart {
         MathPart.count1 = count1;
     }
 
-
+    public static double getTimeVelocity(double v0, double v, double acc){
+        return (v-v0) / acc;
+    }
     public static double getFrequency() {
         return frequency;
     }

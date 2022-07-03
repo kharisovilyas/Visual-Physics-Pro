@@ -15,7 +15,7 @@ public class LessonData {
     public String name;
     @ColumnInfo(name = "surname")
     public String surname;
-    @ColumnInfo(name = "image")
+    @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
     public byte[] image;
     @ColumnInfo(name = "emailTeacher")
     public String emailTeacher;

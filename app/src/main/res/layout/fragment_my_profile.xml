@@ -48,7 +48,7 @@
             android:padding="16dp">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/imageView"
+                android:id="@+id/imageView3"
                 android:layout_width="190dp"
                 android:layout_height="match_parent"
                 android:src="@mipmap/user_profile_image_round"

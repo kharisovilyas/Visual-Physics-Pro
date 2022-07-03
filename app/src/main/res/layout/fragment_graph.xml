@@ -41,6 +41,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/appbar">
 
                 <TextView
+                    android:id="@+id/text1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
@@ -78,6 +79,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
 
                 <TextView
+                    android:id="@+id/text2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"

@@ -1,7 +1,6 @@
 package com.example.visualphysics10.ui.lesson;
 
 import android.annotation.SuppressLint;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -24,6 +23,7 @@ import com.example.visualphysics10.R;
 import com.example.visualphysics10.database.PhysicsData;
 import com.example.visualphysics10.databinding.LessonFragmentBinding;
 import com.example.visualphysics10.objects.PhysicsModel;
+import com.example.visualphysics10.physics.MathPart;
 import com.example.visualphysics10.physics.PhysicView;
 import com.example.visualphysics10.ui.input.FullScreenDialog;
 import com.example.visualphysics10.ui.input.FullScreenDialog5;
@@ -128,42 +128,98 @@ public class LessonFragment extends Fragment {
 
     private void waitingForSV() {
         final Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                //call the engine constructor for first fragment to Velocity
-                gameView.addModelGV(position);
-            }
-            //minimal latency for users
+        //minimal latency for users
+        handler.postDelayed(() -> {
+            //call the engine constructor for first fragment to Velocity
+            gameView.addModelGV(position);
         }, 100);
     }
 
     private void getMessage() {
         addToolbarNav();
-        MaterialTextView outputMes = binding.outputSpeed;
-        MaterialTextView outputNull = binding.outputAcc;
+        MaterialTextView outputMes = binding.output1;
         outputMes.setText(R.string.outputMes);
-        outputNull.setText("");
+        binding.output2.setText("");
+        binding.output3.setText("");
+        binding.output4.setText("");
+        binding.output5.setText("");
+        binding.output6.setText("");
     }
 
     //Output Data
-    @SuppressLint("SetTextI18n")
+    @SuppressLint({"SetTextI18n", "ResourceAsColor"})
     public void outputData() {
         DrawerLayout drawerLayout = binding.drawerLayout;
         NavigationView navigation = binding.navigationView;
         addToolbarNav();
-        MaterialTextView outputSpeed = binding.outputSpeed;
-        MaterialTextView outputAcc = binding.outputAcc;
-        String string = getString(R.string.outputSpeed) + "\n" + PhysicsData.getSpeed() + " [м/с]";
-        String string2 = getString(R.string.outputAcc) + "\n" + PhysicsData.getAcc() + " [м/с^2]";
-        outputSpeed.setText(string);
-        outputAcc.setText(string2);
+        MaterialTextView output1 = binding.output1;
+        MaterialTextView output2 = binding.output2;
+        MaterialTextView output3 = binding.output3;
+        MaterialTextView output4 = binding.output4;
+        MaterialTextView output5 = binding.output5;
+        MaterialTextView output6 = binding.output6;
+        String string = "";
+        String string2 = "";
+        String string3 = "";
+        String string4 = "";
+        String string5 = "";
+        String string6 = "";
+        MathPart.setFrequency((2 * Math.PI * PhysicsData.getRadius()) / PhysicsData.getSpeed());
+        string = getString(R.string.outputSpeed) + "\n" + PhysicsData.getSpeed() + " [м/с]";
+        switch (position) {
+            case 0:
+                string2 = getString(R.string.outputAcc) + "\n" + PhysicsData.getAcc() + " [м/с^2]";
+                break;
+            case 1:
+                string2 = getString(R.string.outputRadius) + "\n" + PhysicsData.getRadius() + " [м]";
+                string3 = getString(R.string.outputFreq) + MathPart.getFrequency() + "[c^-1]";
+                break;
+            case 2:
+                string2 = getString(R.string.outputF) + PhysicsData.getForce() + " [Н]";
+                string3 = getString(R.string.outputAccG) + PhysicsData.getAcc() + " [м/с^2]";
+                break;
+            case 3:
+                 string2 = getString(R.string.outputAcc) + "\n" + PhysicsData.getAcc() + " [м/с^2]";
+                 string3 = getString(R.string.outputAngle) + "\n" + PhysicsData.getAngle() + " [°]";
+                 string4 = getString(R.string.outputHeight) + "\n" + PhysicsData.getY0() / 2 + " [м]";
+                 string5 = getString(R.string.outputTime) + "\n" + MathPart.getTime(PhysicsData.getSpeed(), PhysicsData.getAngle()) + " [c]";
+                 break;
+            case 4:
+                string = getString(R.string.outputSpeed1) + "\n" + PhysicsData.getSpeed() + " [м/с]";
+                string2 = getString(R.string.outputSpeed2) + "\n" + PhysicsData.getSpeed2() + " [м/с]";
+                string3 = getString(R.string.outputMass1) + "\n" + PhysicsData.getMass1() + " [кг]";
+                string4 = getString(R.string.outputMass2) + "\n" + PhysicsData.getMass2() + " [кг]";
+                string5 = getString(R.string.outputImp1) + "\n" + MathPart.getImp1(PhysicsData.getSpeed(), PhysicsData.getMass1()) + " [кг * м/с]";
+                string6 = getString(R.string.outputImp2) + "\n" + MathPart.getImp2(PhysicsData.getSpeed2(), PhysicsData.getMass2()) + " [кг * м/с]";
+        }
+        output1.setText(string);
+        output2.setText(string2);
+        output3.setText(string3);
+        output4.setText(string4);
+        output5.setText(string5);
+        output6.setText(string6);
+
+        switch (position){
+            case 1:
+                output3.setTextColor(R.color.red);
+                break;
+            case 2:
+                output4.setTextColor(R.color.red);
+                break;
+            case 3:
+                output4.setTextColor(R.color.red);
+                output5.setTextColor(R.color.red);
+                break;
+            case 4:
+                output5.setTextColor(R.color.red);
+                output6.setTextColor(R.color.red);
+        }
     }
 
     private void addToolbarNav() {
         Toolbar toolbar = binding.toolbarNavView;
-        ((MainActivity) Objects.requireNonNull(getActivity())).setSupportActionBar(toolbar);
-        toolbar.setTitle("Введенные данные");
+        ((MainActivity) requireActivity()).setSupportActionBar(toolbar);
+        toolbar.setTitle(R.string.outputDataTitle);
     }
 
     private void pauseClick() {
