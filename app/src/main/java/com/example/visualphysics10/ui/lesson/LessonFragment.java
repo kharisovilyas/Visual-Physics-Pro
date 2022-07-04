@@ -48,7 +48,7 @@ public class LessonFragment extends Fragment {
     private PhysicView gameView;
     public static boolean isMoving = false;
     private FloatingActionButton play;
-    private int count = 0;
+    public static int count = 0;
     private final int position;
 
     public LessonFragment(int position) {
@@ -87,7 +87,7 @@ public class LessonFragment extends Fragment {
         });
         //allows the user to restart the visualization with the input data if if you want to change the data - restart and input
         restart.setOnClickListener(v -> {
-            createDialog();
+            restartClick();
         });
         //create Dialog where input Data for visualization
         startInput.setOnClickListener(v -> {
@@ -282,12 +282,14 @@ public class LessonFragment extends Fragment {
     }
 
     @SuppressLint("ResourceType")
-    private void createDialog() {
+    private void restartClick() {
         play.setImageResource(R.drawable.play_arrow);
         count += count % 2;
         gameView.restartClick(0);
         if (position == 4) gameView.restartClick(1);
         getMessage();
+        GraphFragment.vectorsX.clear();
+        GraphFragment.vectorsY.clear();
     }
 
 
@@ -318,7 +320,7 @@ public class LessonFragment extends Fragment {
     }
 
     //choose title for any lesson
-    private int selectTitle(int position) {
+    public static int selectTitle(int position) {
         switch (position) {
             //title for lesson #1 - velocity and ect..
             case 0:

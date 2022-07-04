@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -90,19 +91,19 @@ public class LabFragmentList extends Fragment implements RecyclerViewAdapter.OnL
         Toast.makeText(requireContext(), getString(R.string.forSave), Toast.LENGTH_LONG).show();
         switch (position) {
             case 0:
-                sendLesson(String.valueOf(R.string.sbj1));
+                sendLesson(getString(R.string.sbj1));
                 break;
             case 1:
-                sendLesson(String.valueOf(R.string.sbj2));
+                sendLesson(getString(R.string.sbj2));
                 break;
             case 2:
-                sendLesson(String.valueOf(R.string.sbj3));
+                sendLesson(getString(R.string.sbj3));
                 break;
             case 3:
-                sendLesson(String.valueOf(R.string.sbj4));
+                sendLesson(getString(R.string.sbj4));
                 break;
             case 4:
-                sendLesson(String.valueOf(R.string.sbj5));
+                sendLesson(getString(R.string.sbj5));
                 break;
         }
     }
@@ -111,10 +112,10 @@ public class LabFragmentList extends Fragment implements RecyclerViewAdapter.OnL
     public void sendLesson(String body) {
         initData();
         if (image != null) lenIm = image.length;
+        im = (lenIm > 68000);
         String[] recipients = new String[]{emailTeacher};
         String subject = body + " " + name + getString(R.string.sbj) + " " + youClass;
         String content = getString(R.string.prof) + " " + im;
-        im = (lenIm > 74000);
         Intent intentEmail = new Intent(Intent.ACTION_SEND, Uri.parse("mailto:"));
         intentEmail.putExtra(Intent.EXTRA_EMAIL, recipients);
         intentEmail.putExtra(Intent.EXTRA_SUBJECT, subject);

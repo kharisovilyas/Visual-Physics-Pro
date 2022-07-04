@@ -19,7 +19,6 @@ import com.example.visualphysics10.R;
 import com.example.visualphysics10.databinding.EndEducationDialogBinding;
 import com.google.android.material.appbar.MaterialToolbar;
 
-import java.util.Objects;
 
 public class EndEducationDialog extends DialogFragment {
     private EndEducationDialogBinding binding;
@@ -58,7 +57,7 @@ public class EndEducationDialog extends DialogFragment {
 
     private void addToolbar() {
         MaterialToolbar toolbar = binding.toolbar;
-        ((MainActivity) Objects.requireNonNull(getActivity())).setSupportActionBar(toolbar);
+        ((MainActivity) requireActivity()).setSupportActionBar(toolbar);
         toolbar.setTitle("");
         toolbar.setNavigationIcon(R.drawable.close);
         toolbar.setNavigationIconTint(Color.WHITE);

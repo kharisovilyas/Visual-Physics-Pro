@@ -5,7 +5,6 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -99,7 +98,6 @@ public class GraphFragment extends Fragment {
         binding.buildGraph.setOnClickListener(v -> {
             for (int i = 0; i < vectorsX.size(); i++) {
                 series.appendData((DataPoint) vectorsX.toArray()[i], false, vectorsX.size());
-                Log.d("TAG", String.valueOf(vectorsX.size()));
             }
             vectorsX.clear();
             vectorsX.remove(series);
@@ -108,9 +106,7 @@ public class GraphFragment extends Fragment {
         //second graph
         binding.buildGraph2.setOnClickListener(v -> {
             for (int i = 0; i < vectorsY.size(); i++) {
-                Log.d("TAG", String.valueOf(vectorsY.size()));
                 series2.appendData((DataPoint) vectorsY.toArray()[i], false, vectorsY.size());
-                Log.d("TAG", String.valueOf(vectorsY.size()));
             }
             vectorsY.clear();
             vectorsY.remove(series2);
@@ -132,6 +128,10 @@ public class GraphFragment extends Fragment {
             binding.buildGraph2.setVisibility(View.VISIBLE);
         });
 
+    }
+
+    private boolean checkCount() {
+        return LessonFragment.count < 6;
     }
 
     public static void addVectorX(int x, int y, int time) {
@@ -160,7 +160,7 @@ public class GraphFragment extends Fragment {
 
     private void createdFullScreenDialog(Bitmap bmp1, Bitmap bmp2) {
 
-        LabFileDialogFragment fragment = new LabFileDialogFragment(bmp1, bmp2);
+        LabFileDialogFragment fragment = new LabFileDialogFragment(bmp1, bmp2, position);
 
         fragment.show(requireActivity().getSupportFragmentManager(), "saveGraph");
     }

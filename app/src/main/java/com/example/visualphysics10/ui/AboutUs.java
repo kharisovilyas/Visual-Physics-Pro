@@ -17,7 +17,6 @@ import com.example.visualphysics10.R;
 import com.example.visualphysics10.databinding.AboutUsBinding;
 import com.google.android.material.appbar.MaterialToolbar;
 
-import java.util.Objects;
 
 public class AboutUs extends DialogFragment {
     private AboutUsBinding binding;

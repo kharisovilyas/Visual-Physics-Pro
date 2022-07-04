@@ -198,7 +198,7 @@ public class LessonEducFrag extends Fragment {
                         .transparentTarget(true)
                         .targetRadius(100),
                 TapTarget.forView(binding.startGraph,
-                        "Нажмите и пройдите тест", "Чтобы закрепить усвоенный материал")
+                        "Нажмите и вы сможете построить и сохранить графики движения", "Чтобы потом поделиться ими с учителем, во вкладке Лабораторные")
                         .outerCircleColor(R.color.primary)
                         .outerCircleAlpha(0.96f)
                         .targetCircleColor(R.color.white)

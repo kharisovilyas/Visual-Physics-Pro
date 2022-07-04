@@ -1,21 +1,16 @@
 package com.example.visualphysics10.ui.lesson;
 
 import android.app.Dialog;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -31,17 +26,16 @@ import com.example.visualphysics10.database.LessonViewModel;
 import com.example.visualphysics10.databinding.LabfileDialogBinding;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-import com.google.android.material.snackbar.Snackbar;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
-import java.util.Arrays;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 public class LabFileDialogFragment extends DialogFragment {
@@ -50,14 +44,15 @@ public class LabFileDialogFragment extends DialogFragment {
     public final Bitmap bmp2;
     private Bitmap imageGraph;
     private LessonViewModel viewModel;
-    private LessonData lessonDataList = new LessonData();
-    private LessonData lessonDataList2 = new LessonData();
+    private final LessonData lessonDataList = new LessonData();
     private byte[] image;
+    private final int position;
 
 
-    public LabFileDialogFragment(Bitmap bmp1, Bitmap bmp2) {
+    public LabFileDialogFragment(Bitmap bmp1, Bitmap bmp2, int position) {
         this.bmp1 = bmp1;
         this.bmp2 = bmp2;
+        this.position = position;
     }
 
 
@@ -110,53 +105,50 @@ public class LabFileDialogFragment extends DialogFragment {
         new MaterialAlertDialogBuilder(requireContext())
                 .setTitle(R.string.eror_title)
                 .setMessage(R.string.eror_body)
-                .setPositiveButton("Понятно", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.dismiss();
-                    }
-                })
+                .setPositiveButton("Понятно", (dialog, id) -> dialog.dismiss())
                 .show().getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.WHITE);
     }
 
     private void saveBitmap() throws IOException {
+        final String[] name = {""};
+        Date date = new Date();
+        DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
+        String dateText = dateFormat.format(date);
         lessonDataList.image = BitmapToBytes(imageGraph);
         viewModel = ViewModelProviders.of(requireActivity()).get(LessonViewModel.class);
         viewModel.getLessonLiveData().observe(getViewLifecycleOwner(), new Observer<List<LessonData>>() {
             @Override
             public void onChanged(List<LessonData> lessonData) {
                 lessonData.add(1, lessonDataList);
+                name[0] = lessonData.get(0).name;
             }
         });
         viewModel.update(lessonDataList);
-        saveInGallery();
+        String fileName = "ТЕМА" + ":" + getString(LessonFragment.selectTitle(position)) + "." + name[0] + "." + dateText;
+        saveInGallery(imageGraph, fileName);
     }
 
-    private void saveInGallery() throws IOException {
-        Bitmap bitmap = takeBitmap();
-        String mPath = Environment.getExternalStorageDirectory() + File.separator + "VisualPhysics" + System.currentTimeMillis() + ".jpeg";
-        File imageFile = new File(mPath);
-        OutputStream fout = null;
-        try {
-            fout = new FileOutputStream(imageFile);
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 90, fout);
-            fout.flush();
-        } catch (FileNotFoundException e) {
-                e.printStackTrace();
-        } catch (IOException e) {
-                e.printStackTrace();
-        } finally {
-            fout.close();
+    private void saveInGallery(Bitmap imageToSave, String fileName) {
+
+        File direct = new File(Environment.getExternalStorageDirectory() + "/" + getString(R.string.app_name));
+
+        if (!direct.exists()) {
+            File wallpaperDirectory = new File("/sdcard/"+ getString(R.string.app_name) + "/");
+            wallpaperDirectory.mkdirs();
         }
 
-    }
-    private Bitmap takeBitmap(){
-        viewModel.getLessonLiveData().observe(getViewLifecycleOwner(), new Observer<List<LessonData>>() {
-            @Override
-            public void onChanged(List<LessonData> lessonData) {
-                image = lessonData.get(1).image;
-            }
-        });
-        return BytesToBimap(image);
+        File file = new File(new File("/sdcard/"+ getString(R.string.app_name) + "/"), fileName + ".jpeg");
+        if (file.exists()) {
+            file.delete();
+        }
+        try {
+            FileOutputStream out = new FileOutputStream(file);
+            imageToSave.compress(Bitmap.CompressFormat.JPEG, 100, out);
+            out.flush();
+            out.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void addToolbar() {

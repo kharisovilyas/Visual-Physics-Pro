@@ -11,7 +11,6 @@ import com.example.visualphysics10.R;
 import com.example.visualphysics10.ui.AboutUs;
 import com.example.visualphysics10.ui.AuthorsInfoDialog;
 
-import java.util.Objects;
 
 public class SettingsFragment2 extends PreferenceFragmentCompat {
     Preference authorsList;
@@ -48,11 +47,11 @@ public class SettingsFragment2 extends PreferenceFragmentCompat {
 
     private void onSelectedAboutUS() {
         DialogFragment dialogFragment = AboutUs.newInstance();
-        dialogFragment.show(Objects.requireNonNull(getActivity()).getSupportFragmentManager(), "about!");
+        dialogFragment.show(requireActivity().getSupportFragmentManager(), "about!");
     }
 
     private void onSelectedAuthorsList() {
         DialogFragment dialogFragment = AuthorsInfoDialog.newInstance();
-        dialogFragment.show(Objects.requireNonNull(getActivity()).getSupportFragmentManager(), "about!");
+        dialogFragment.show(requireActivity().getSupportFragmentManager(), "about!");
     }
 }

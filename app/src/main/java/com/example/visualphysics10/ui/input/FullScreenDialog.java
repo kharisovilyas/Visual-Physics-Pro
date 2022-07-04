@@ -17,7 +17,6 @@ import com.example.visualphysics10.database.LessonData;
 import com.example.visualphysics10.database.LessonViewModel;
 import com.example.visualphysics10.database.PhysicsData;
 import com.example.visualphysics10.databinding.FullscreenDialogBinding;
-import com.example.visualphysics10.ui.MainFlag;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;

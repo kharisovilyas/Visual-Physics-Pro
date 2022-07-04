@@ -6,7 +6,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.util.AttributeSet;
-import android.util.Log;
+
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
@@ -17,7 +17,7 @@ import com.example.visualphysics10.engine.PhysicsSprite;
 import com.example.visualphysics10.engine.Sprite;
 import com.example.visualphysics10.engine.Vector2;
 import com.example.visualphysics10.objects.PhysicsModel;
-import com.example.visualphysics10.ui.lesson.GraphFragment;
+
 import com.example.visualphysics10.ui.lesson.LessonFragment;
 
 import java.util.LinkedList;

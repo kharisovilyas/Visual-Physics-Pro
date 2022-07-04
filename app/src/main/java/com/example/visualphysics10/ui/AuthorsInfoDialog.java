@@ -18,8 +18,6 @@ import com.example.visualphysics10.R;
 import com.example.visualphysics10.databinding.AuthorsListBinding;
 import com.google.android.material.appbar.MaterialToolbar;
 
-import java.util.Objects;
-
 public class AuthorsInfoDialog extends DialogFragment {
     private AuthorsListBinding binding;
     public static DialogFragment newInstance() {
@@ -67,7 +65,7 @@ public class AuthorsInfoDialog extends DialogFragment {
 
     private void addToolbar() {
         MaterialToolbar toolbar = binding.toolbar;
-        ((MainActivity) Objects.requireNonNull(getActivity())).setSupportActionBar(toolbar);
+        ((MainActivity) requireActivity()).setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.close);
         toolbar.setTitle("Список заимствований");
         toolbar.setNavigationOnClickListener(v -> {

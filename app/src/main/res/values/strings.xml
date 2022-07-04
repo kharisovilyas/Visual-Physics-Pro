@@ -153,7 +153,7 @@
     <string name="aboutUs">Visual Physics - это образовательная платформа, в которой пользователь может улучшить свое понимание физики при помощи визуализации или просмотра специально отобранных лекций, а также попрактиковаться в решении задач базового уровня сложности для отработки полученных навыков."</string>
     <string name="aboutCreated">Информация о создателях</string>
     <string name="toEnd"> Поздравляем !</string>
-    <string name="toEndDescription">Вы прошли основное обучение и готовы изучать физику вместе с нами! Незабудь в настройках твоего телефона дать разрешение на использование памяти, это важно !</string>
+    <string name="toEndDescription">Вы прошли основное обучение и готовы изучать физику вместе с нами! Не забудь в настройках твоего телефона дать разрешение на использование памяти, это важно !</string>
     <string name="outputSpeed">Вы ввели значение скорости тела : </string>
     <string name="outputSpeed1">Вы ввели значение скорости первого тела : </string>
     <string name="outputSpeed2">Вы ввели значение скорости второго тела : </string>
@@ -259,12 +259,12 @@
     <string name="sbj5">"Тема: Закон сохранения импульса. Выполнил(а): "</string>
     <string name="sbj">. Ученик(ца)</string>
     <string name="forGmail">Обязательно выбирите отправку по почте!..</string>
-    <string name="forSave">Незабудь прикрепить графики</string>
+    <string name="forSave">Не забудь прикрепить графики</string>
     <string name="link1"><a href="https://www.youtube.com/channel/UCpZk6LW-BP3n-Uc6dVCwXVw">YBW Education</a></string>
     <string name="link2"><a href="https://www.youtube.com/c/infourok">Инфоурок</a></string>
     <string name="link3"><a href="https://easyfizika.ru">EasyFizika</a></string>
     <string name="text1">В лекциях был использован материал с ютуб каналов:</string>
-    <string name="text2">Задачи беруться с сайта</string>
+    <string name="text2">Задачи берутся с сайта</string>
     <string name="eror_title">Внимание, графики сохранены!</string>
     <string name="eror_body">Обычно сохранение занимает несколько минут, но если этого не произошло, разрешите доступ к хранилищу в настройках своего телефона</string>
 </resources>
